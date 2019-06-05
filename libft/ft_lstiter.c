@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/02/15 21:49:33 by kmira             #+#    #+#             */
+/*   Updated: 2019/02/15 21:54:45 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int aa, char const *argv[])
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	printf("Testing");
-	return (0);
+	while (lst)
+	{
+		f(lst);
+		lst = lst->next;
+	}
 }

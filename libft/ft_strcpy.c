@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/02/11 16:14:54 by kmira             #+#    #+#             */
+/*   Updated: 2019/02/23 22:08:56 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int aa, char const *argv[])
+char	*ft_strcpy(char *dst, const char *src)
 {
-	printf("Testing");
-	return (0);
+	return (ft_strncpy(dst, src, ft_strlen(src) + 1));
 }

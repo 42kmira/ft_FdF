@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/02/11 22:02:36 by kmira             #+#    #+#             */
+/*   Updated: 2019/02/23 22:08:52 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int aa, char const *argv[])
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	printf("Testing");
-	return (0);
+	return (ft_strncmp(s1, s2, ft_strlen(s1) + 1));
 }

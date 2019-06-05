@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/02/13 13:26:15 by kmira             #+#    #+#             */
+/*   Updated: 2019/02/15 22:30:57 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int aa, char const *argv[])
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	printf("Testing");
-	return (0);
+	char	*result;
+	char	*head;
+
+	if (!(s) || !(f))
+		return (NULL);
+	result = malloc(sizeof(*result) * (ft_strlen(s) + 1));
+	head = result;
+	if (result == NULL)
+		return (NULL);
+	while (*s)
+	{
+		*result = f((result - head), *s);
+		result++;
+		s++;
+	}
+	*result = '\0';
+	return (head);
 }

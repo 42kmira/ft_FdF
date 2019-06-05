@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/02/12 11:12:29 by kmira             #+#    #+#             */
+/*   Updated: 2019/02/23 22:10:23 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int aa, char const *argv[])
+char	*ft_strdup(const char *s1)
 {
-	printf("Testing");
-	return (0);
+	char	*result;
+	int		len;
+
+	len = ft_strlen(s1);
+	result = (char *)malloc(sizeof(*result) * (len + 1));
+	if (result == NULL)
+		return (NULL);
+	*((char *)ft_memcpy_at(result, s1, len)) = '\0';
+	return (result);
 }

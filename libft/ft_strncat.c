@@ -1,19 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/02/11 16:57:54 by kmira             #+#    #+#             */
+/*   Updated: 2019/02/23 22:15:13 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int aa, char const *argv[])
+char		*ft_strncat(char *s1, const char *s2, size_t n)
 {
-	printf("Testing");
-	return (0);
+	char	*head;
+
+	head = s1;
+	s1 = ft_str_go_to_end(s1);
+	*((char *)ft_memcpy_at(s1, s2,
+			ft_fast_find(s2, n, '\0') - s2)) = '\0';
+	return (head);
 }

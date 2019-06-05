@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/02/12 10:22:50 by kmira             #+#    #+#             */
+/*   Updated: 2019/02/23 21:55:30 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int aa, char const *argv[])
+/*
+** Note: ft_memcpy copies in a backward way while ft_memcpy_foward
+** copies in a foward fashion.
+*/
+
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	printf("Testing");
-	return (0);
+	if (dst < src)
+		ft_memcpy_foward(dst, src, len);
+	else
+		ft_memcpy(dst, src, len);
+	return (dst);
 }

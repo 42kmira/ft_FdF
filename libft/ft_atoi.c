@@ -1,19 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/02/11 22:06:34 by kmira             #+#    #+#             */
+/*   Updated: 2019/05/29 20:33:19 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int aa, char const *argv[])
+/*
+** Binary multiplication magic. -MIN * (-1)
+*/
+
+int	ft_atoi(const char *str)
 {
-	printf("Testing");
-	return (0);
+	int		sign;
+	int		result;
+
+	result = 0;
+	while (*str == ' ' || ('\a' <= *str && *str <= '\r'))
+		str++;
+	sign = 1;
+	if (*str == '-' || *str == '+')
+		if (*str++ == '-')
+			sign = -1;
+	while ('0' <= *str && *str <= '9')
+	{
+		result = result * 10 + (*str - '0');
+		str++;
+	}
+	return (result * sign);
 }

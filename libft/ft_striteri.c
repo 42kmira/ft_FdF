@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/02/13 13:04:10 by kmira             #+#    #+#             */
+/*   Updated: 2019/02/23 22:12:25 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+/*
+** Change to version like ft_strcmp.
+*/
 
-int	main(int aa, char const *argv[])
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	printf("Testing");
-	return (0);
+	unsigned int i;
+
+	if (!(s) || !(f))
+		return ;
+	i = 0;
+	while (*s)
+	{
+		f(i, s);
+		i++;
+		s++;
+	}
 }

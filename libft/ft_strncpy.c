@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/02/11 16:21:05 by kmira             #+#    #+#             */
+/*   Updated: 2019/02/23 22:15:46 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int aa, char const *argv[])
+char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	printf("Testing");
-	return (0);
+	size_t		i;
+
+	i = -1;
+	while (++i < len)
+		if (*(src + i))
+			*(dst + i) = *(src + i);
+		else
+			while (i < len)
+				*(dst + i++) = '\0';
+	return (dst);
 }

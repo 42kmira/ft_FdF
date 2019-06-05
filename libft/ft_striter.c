@@ -1,19 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/02/13 13:00:46 by kmira             #+#    #+#             */
+/*   Updated: 2019/02/23 22:11:54 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+/*
+** Change to version like ft_strcmp.
+*/
 
-int	main(int aa, char const *argv[])
+void	ft_striter(char *s, void (*f)(char *))
 {
-	printf("Testing");
-	return (0);
+	if (!(s) || !(f))
+		return ;
+	while (*s)
+	{
+		f(s);
+		s++;
+	}
 }

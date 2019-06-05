@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_digit_amount.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/02/13 23:58:01 by kmira             #+#    #+#             */
+/*   Updated: 2019/02/23 22:37:43 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int aa, char const *argv[])
+int	ft_digit_amount(int c)
 {
-	printf("Testing");
-	return (0);
+	int result;
+
+	result = 1;
+	if (c >= 0)
+		c = c * -1;
+	else
+		result++;
+	while (c <= -10)
+	{
+		c = c / 10;
+		result++;
+	}
+	return (result);
 }

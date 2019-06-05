@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_puterror.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/04 18:30:43 by kmira            ###   ########.fr       */
+/*   Created: 2019/05/16 16:38:24 by kmira             #+#    #+#             */
+/*   Updated: 2019/05/16 20:33:15 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fdf.h"
+#include "libft.h"
 
-int	main(int aa, char const *argv[])
+void	ft_puterror(char const *s)
 {
-	printf("Testing");
-	return (0);
+	if (s == NULL)
+		return ;
+	write(1, s, ft_strlen(s));
+	write(1, "\n", 1);
+	exit(EXIT_FAILURE);
 }

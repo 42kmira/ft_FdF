@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:19:15 by kmira             #+#    #+#              #
-#    Updated: 2019/06/04 18:32:34 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/05 16:57:19 by kchen2           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,9 @@ LIBRARY = libft/libft.a
 
 FILES = \
 		main
+
+#gcc -Wall -Werror -Wextra -c testmain.c#
+#gcc -L./minilibx_macos/ -lmlx -framework OpenGL -framework AppKit testmain.o#
 
 SRCS = $(addsuffix .c, $(FILES))
 OBJS = $(addsuffix .c, $(FILES))

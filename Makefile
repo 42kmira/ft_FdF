@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kchen2 <kchen2@student.42.fr>              +#+  +:+       +#+         #
+#    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:19:15 by kmira             #+#    #+#              #
-#    Updated: 2019/06/05 19:42:25 by kchen2           ###   ########.fr        #
+#    Updated: 2019/06/05 21:45:55 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = fdf
 LIBRARY = libft/libft.a
 
 FILES = \
-		main
+		main \
+		input \
 
 MLB = -L./minilibx_macos/ -lmlx -framework OpenGL -framework AppKit
 
@@ -52,3 +53,9 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+rebuild: clean
+	rm -f $(NAME)
+	make all
+	make clean
+	clear

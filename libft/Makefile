@@ -3,16 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kchen2 <kchen2@student.42.fr>              +#+  +:+       +#+         #
+#    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 11:40:08 by kmira             #+#    #+#              #
-#    Updated: 2019/06/05 19:46:49 by kchen2           ###   ########.fr        #
+#    Updated: 2019/06/05 20:52:31 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= libft.a
 FLAGS	= -Wall -Werror -Wextra -c
-FUNCS	=	atoi \
+FUNCS	=	\
+			atoi \
 			bzero \
 			isalnum \
 			isalpha \
@@ -79,7 +80,8 @@ FUNCS	=	atoi \
 			str_go_to_end \
 			min \
 			islower \
-			isupper
+			isupper \
+			get_next_line \
 
 C_FILES	= $(addsuffix .c, $(addprefix ft_, $(FUNCS)))
 OBJ		= $(addsuffix .o, $(addprefix ft_, $(FUNCS)))

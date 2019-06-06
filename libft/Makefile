@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
+#    By: kchen2 <kchen2@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 11:40:08 by kmira             #+#    #+#              #
-#    Updated: 2019/05/29 20:02:12 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/05 19:46:49 by kchen2           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,7 +101,7 @@ clean:
 	@/bin/rm -f $(OBJ)
 
 fclean: clean
-	@echo "	Rmoving .h files..."
+	@echo "	Rmoving .a files..."
 	@/bin/rm -f $(NAME)
 
 re: fclean all

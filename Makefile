@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
+#    By: kchen2 <kchen2@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:19:15 by kmira             #+#    #+#              #
-#    Updated: 2019/06/05 16:57:19 by kchen2           ###   ########.fr        #
+#    Updated: 2019/06/05 19:42:25 by kchen2           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,22 +17,26 @@ LIBRARY = libft/libft.a
 FILES = \
 		main
 
-#gcc -Wall -Werror -Wextra -c testmain.c#
-#gcc -L./minilibx_macos/ -lmlx -framework OpenGL -framework AppKit testmain.o#
+MLB = -L./minilibx_macos/ -lmlx -framework OpenGL -framework AppKit
 
 SRCS = $(addsuffix .c, $(FILES))
-OBJS = $(addsuffix .c, $(FILES))
+OBJS = $(addsuffix .o, $(FILES))
 
 all: $(NAME)
 
-$(NAME): $(LIBRARY)
+$(NAME): $(LIBRARY) MLBlib
 	@echo "\033[32m""Making your fdf executable"
-	@gcc -o $(NAME) $(OBJS) $(LIBRARY)
+	@gcc $(FLAGS) -c $(SRCS)
+	@gcc $(MLB) -o $(NAME) $(OBJS) $(LIBRARY)
 	@echo "\033[32m""Done!"
 
 $(LIBRARY):
 	@make -C libft/
 	make clean -C libft/
+
+MLBlib:
+	@echo "\033[32m""Making minlibx"
+	@make -C minilibx_macos/ clean && make -C minilibx_macos/
 
 $(OBJ):
 	gcc $(FLAGS) -c $(SRCS)
@@ -43,7 +47,8 @@ clean:
 	@rm -f $(OBJS)
 
 fclean: clean
-	@make -C fclean libft/
+	@make -C minilibx_macos/ clean
+	@make -C libft/ fclean
 	rm -f $(NAME)
 
 re: fclean all

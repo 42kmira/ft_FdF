@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/05 21:49:46 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/07 16:21:58 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ int	main(int aa, char const *argv[])
 		EXIT(RED"File could not be opened");
 	get_next_line(file, &line);
 	number_x_points = count_points(line);
-	printf("Testing");
+	printf("Points: %d\n", number_x_points);
 	return (0);
 }

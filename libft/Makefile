@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/12 11:40:08 by kmira             #+#    #+#              #
-#    Updated: 2019/06/05 20:52:31 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/06 14:51:11 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ FUNCS	=	\
 			isalpha \
 			isascii \
 			isdigit \
+			ishex \
 			isprint \
 			memccpy \
 			memchr \

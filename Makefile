@@ -6,18 +6,21 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:19:15 by kmira             #+#    #+#              #
-#    Updated: 2019/06/07 18:24:11 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/07 20:05:22 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-FLAGS = -Wall -Wextra -Werror
-INCLUDES = includes
 NAME = fdf
+
+FLAGS = -Wall -Wextra -Werror
+
+INCLUDES = includes
 LIBRARY = libft/libft.a
+LIBMLX = minilibx_macos/libmlx.a
 
 FILES = \
-		main \
 		input \
+		main \
 		point_matrix \
 
 MLB = -L./minilibx_macos/ -lmlx -framework OpenGL -framework AppKit
@@ -27,22 +30,23 @@ OBJS = $(addsuffix .o, $(FILES))
 
 all: $(NAME)
 
-$(NAME): $(LIBRARY) MLBlib
+$(NAME): $(LIBRARY) $(LIBMLX)
 	@echo "\033[32m""Making your fdf executable"
 	@gcc $(FLAGS) -I$(INCLUDES) -c $(SRCS)
 	@gcc $(MLB) -o $(NAME) $(OBJS) $(LIBRARY)
 	@echo "\033[32m""Done!"
+	@sleep .5
 
 $(LIBRARY):
 	@make -C libft/
-	make clean -C libft/
+	@make clean -C libft/
 
-MLBlib:
+$(LIBMLX):
 	@echo "\033[32m""Making minlibx"
 	@make -C minilibx_macos/ clean && make -C minilibx_macos/
 
 $(OBJ):
-	gcc $(FLAGS) -I$(INCLUDES) -c $(SRCS)
+	@gcc $(FLAGS) -I$(INCLUDES) -c $(SRCS)
 
 clean:
 	@echo "Cleaning your .o files"
@@ -56,8 +60,8 @@ fclean: clean
 
 re: fclean all
 
-rebuild: clean
-	rm -f $(NAME)
+quick: clean
+	@rm -f $(NAME)
 	make all
-	make clean
-	clear
+	@make clean
+	@clear

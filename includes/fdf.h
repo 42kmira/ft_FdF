@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/07 18:13:17 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/07 18:23:37 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 # include "debug.h"
 
-# include "libft/libft.h"
-# include "libft/ft_color.h"
+# include "libft.h"
+# include "ft_color.h"
 # include "fdf_structs.h"
 
 # include <fcntl.h>

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/07 18:23:37 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/07 21:51:23 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 
 # define INVALID_FILE -1
 
+# define SKIP_SPACE(l, i) while ((l)[(i)] != '\0' && (l)[(i)] == ' ') (i)++;
+
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** FILE: input.c
@@ -48,13 +50,14 @@
 */
 
 int		count_points(char const *line);
+char	*fetch_hexadecimal(char const *string);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** FILE: point_matrix.c
 */
 
-void	get_point_matrix(int file, int number_x_point, char **line);
+t_point	**get_point_matrix(int file, int number_x_point, char **line);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-

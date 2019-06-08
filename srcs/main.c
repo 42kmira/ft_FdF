@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/07 17:47:38 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/07 23:02:39 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ int	main(int aa, char const *argv[])
 		EXIT(RED"File could not be opened");
 	get_next_line(file, &line);
 	number_x_points = count_points(line);
-	get_point_matrix(file, number_x_points, &line);
-	printf("Points: %d\n", number_x_points);
+
+	t_point **points;
+	points = get_point_matrix(file, number_x_points, &line);
+
+	print_points(number_x_points, points);
 	return (0);
 }

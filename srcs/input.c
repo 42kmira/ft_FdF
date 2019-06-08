@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 20:56:45 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/07 17:50:44 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/07 23:13:48 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		hex_prefixed(char const *str)
 		return (0);
 }
 
-char	*fetch_hexidecimal(char const *string)
+char	*fetch_hexadecimal(char const *string)
 {
 	char	*result;
 	int		i;
@@ -60,19 +60,17 @@ int		count_points(char const *line)
 	result = 0;
 	while (line[i] != '\0')
 	{
-		while (line[i] != '\0' && line[i] == ' ')
-			i++;
+		SKIP_SPACE(line, i);
 		if (ft_isdigit(line[i]))
 		{
 			result++;
 			while (line[i] != '\0' && ft_isdigit(line[i]))
 				i++;
 		}
-		color = fetch_hexidecimal(&line[i]);
+		color = fetch_hexadecimal(&line[i]);
 		if (color != NULL)
 			i += ft_strlen(color) + 3;
-		while (line[i] != '\0' && line[i] == ' ')
-			i++;
+		SKIP_SPACE(line, i);
 		if (line[i] != '\0' && ft_isdigit(line[i]) == 0)
 			EXIT(RED"File is in an invalid format\n");
 	}

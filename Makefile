@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:19:15 by kmira             #+#    #+#              #
-#    Updated: 2019/06/07 20:05:22 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/07 23:00:03 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ LIBRARY = libft/libft.a
 LIBMLX = minilibx_macos/libmlx.a
 
 FILES = \
+		debug \
 		input \
 		main \
 		point_matrix \

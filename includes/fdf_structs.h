@@ -6,14 +6,12 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 16:22:00 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/07 18:05:39 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/07 23:01:49 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_STRUCTS_H
-#define FDF_STRUCTS_H
-
-# include "fdf.h"
+# define FDF_STRUCTS_H
 
 typedef struct		s_point
 {

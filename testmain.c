@@ -79,13 +79,6 @@ int main(void)
   mlx_string_put(mlx, window, 20, 140, 0xFFFF00, "/\\    To rotate           - 8, 2, 4, 6            /\\");
   mlx_string_put(mlx, window, 20, 160, 0xFFFF00, "\\/------------------------------------------------\\/");
 
-
-  mlx_string_put(mlx, window, 60, 200, 0xFFFF00, "    /)");
-  mlx_string_put(mlx, window, 60, 220, 0xFFFF00, "   (__)");
-  mlx_string_put(mlx, window, 60, 240, 0xFFFF00, "  (____)");
-  mlx_string_put(mlx, window, 60, 260, 0xFFFF00, " (______)");
-  mlx_string_put(mlx, window, 60, 280, 0xFFFF00, "(________)");
-
   draw_line(300, 300, 800, 800, mlx, window);
   draw_line(300, 800, 800, 300, mlx, window);
 

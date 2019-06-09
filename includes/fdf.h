@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/07 21:51:23 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/08 23:16:46 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include "ft_color.h"
 # include "fdf_structs.h"
 
+# include "../minilibx_macos/mlx.h"
+
 # include <fcntl.h>
 # include <stdint.h>
 # include <sys/types.h>
@@ -34,6 +36,13 @@
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** MARCOS
 */
+
+# define WINDOW_WIDTH 1024
+# define WINDOW_HEIGHT 740
+# define WINDOW_NAME "FDF"
+
+# define MULTIPLIER 50
+# define OFFSET 200
 
 # ifndef EXIT
 #  define EXIT(error_msg) ft_puterror(error_msg)
@@ -57,10 +66,27 @@ char	*fetch_hexadecimal(char const *string);
 ** FILE: point_matrix.c
 */
 
-t_point	**get_point_matrix(int file, int number_x_point, char **line);
+t_point	**get_point_matrix(int file);
+
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** FILE: application.c
+*/
+
+int		draw(void **params);
+t_app	create_application(void);
+
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** FILE: rendering.c
+** Handles on the image
+*/
+
+void	draw_line(t_point p1, t_point p2, t_app *app, int color);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 */
+
 
 #endif

@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:19:15 by kmira             #+#    #+#              #
-#    Updated: 2019/06/07 23:00:03 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/08 22:43:35 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,9 +20,11 @@ LIBMLX = minilibx_macos/libmlx.a
 
 FILES = \
 		debug \
+		application \
 		input \
 		main \
 		point_matrix \
+		rendering \
 
 MLB = -L./minilibx_macos/ -lmlx -framework OpenGL -framework AppKit
 

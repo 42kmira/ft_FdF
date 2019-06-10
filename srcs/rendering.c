@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 22:06:04 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/09 21:00:56 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/09 21:38:48 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	draw_line(t_point p1, t_point p2, t_app *app)
 	int j = p1.PY;
 	int sum;
 	int move_y_by_one;
+
+	db_print_point_on_window(app, p1, p2);
 
 	sum = 0;
 	while (p1.PX < p2.PX)

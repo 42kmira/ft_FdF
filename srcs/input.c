@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 17:55:53 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/09 21:20:54 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/09 23:29:56 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,27 @@
 
 #define SIZE 100
 
-void	normalize_points(int *px, int *py, int *pz)
+void	normalize_points(t_point **points, int cols, int rows)
 {
+	int		i;
+	int		j;
 
+	i = 0;
+	while (points[i] != NULL)
+	{
+		j = 0;
+		while (points[i][j].exist)
+		{
+			points[i][j].PX = ((WINDOW_WIDTH - (2 * OFFSET_X)) * j)
+									/ (cols - 1) + OFFSET_X;
+			points[i][j].PY = ((WINDOW_HEIGHT - (2 * OFFSET_Y)) * i)
+									/ (rows - 1) + OFFSET_Y;
+			points[i][j].PZ = ((WINDOW_WIDTH - (2 * OFFSET_X)) * j)
+									/ (cols - 1) + OFFSET_X;
+			j++;
+		}
+		i++;
+	}
 }
 
 t_point	get_point(char const *line, int x, int y)
@@ -92,5 +110,6 @@ t_point	**get_point_matrix(int file)
 		row++;
 	}
 	points[row] = NULL;
+	normalize_points(points, number_x_points, row);
 	return (points);
 }

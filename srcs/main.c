@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/09 19:40:30 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/09 22:33:33 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	main(int aa, char const *argv[])
 	points = get_point_matrix(file);
 	// print_points(points);
 	app = create_application();
+	// prepration_step()
 	mlx_loop_hook(app.mlx_connection, events_handler, (void*[2]){(void *)&app, (void *)points});
 	mlx_loop(app.mlx_connection);
 	return (0);

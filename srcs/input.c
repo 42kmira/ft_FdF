@@ -5,74 +5,92 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/05 20:56:45 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/07 23:13:48 by kmira            ###   ########.fr       */
+/*   Created: 2019/06/07 17:55:53 by kmira             #+#    #+#             */
+/*   Updated: 2019/06/09 21:20:54 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define G_PIECE_ID
+
 #include "fdf.h"
+#include "fdf_structs.h"
 
-int		hex_prefixed(char const *str)
+#define SIZE 100
+
+void	normalize_points(int *px, int *py, int *pz)
 {
-	if (str == NULL)
-		return (0);
-	if (str[0] == '0' && (str[1] == 'X' || str[1] == 'x'))
-		return (1);
-	else
-		return (0);
+
 }
 
-char	*fetch_hexadecimal(char const *string)
+t_point	get_point(char const *line, int x, int y)
 {
-	char	*result;
-	int		i;
-	int		j;
+	t_point	result;
 
-	i = 0;
-	if (string[i] == ',')
-	{
-		if (hex_prefixed(&string[++i]))
-		{
-			i += 2;
-			j = 0;
-			while (ft_ishex(string[i + j]))
-				j++;
-			result = malloc(sizeof(*result) * (j + 1));
-			j = -1;
-			while (ft_ishex(string[++j + i]))
-				result[j] = string[j + i];
-			result[j] = '\0';
-			return (result);
-		}
-		return (NULL);
-	}
-	else
-		return (NULL);
+	result.exist = 1;
+
+	result.PX = x;
+	result.PY = y;
+	result.PZ = ft_atoi(line);
+
+	result.color = NULL;
+
+	ft_bzero(result.id, 2);
+	result.id[0] = g_piece_id;
+	g_piece_id = g_piece_id + 1;
+	if (g_piece_id == 'Z')
+		g_piece_id = 'A';
+	return (result);
 }
 
-int		count_points(char const *line)
+t_point	*get_row_of_points(char const *line, int y, int number_x_points)
 {
-	int		result;
-	char	*color;
+	t_point	*points;
+	int		x;
 	int		i;
 
 	i = 0;
-	result = 0;
+	x = 0;
+	points = malloc(sizeof(*points) * (number_x_points + 1));
+	SKIP_SPACE(line, i);
 	while (line[i] != '\0')
 	{
-		SKIP_SPACE(line, i);
 		if (ft_isdigit(line[i]))
 		{
-			result++;
-			while (line[i] != '\0' && ft_isdigit(line[i]))
+			points[x] = get_point(&line[i], x, y);
+			while (ft_isdigit(line[i]))
 				i++;
+			points[x].color = fetch_hexadecimal(&line[i]);
+			if (points[x].color != NULL)
+				i += ft_strlen(points[x].color) + 3;
+			x++;
 		}
-		color = fetch_hexadecimal(&line[i]);
-		if (color != NULL)
-			i += ft_strlen(color) + 3;
 		SKIP_SPACE(line, i);
 		if (line[i] != '\0' && ft_isdigit(line[i]) == 0)
-			EXIT(RED"File is in an invalid format\n");
+			EXIT(RED"Invalid file: see format\n");
 	}
-	return (result);
+	points[x].exist = 0;
+	if (x == number_x_points)
+		return (points);
+	return (NULL);
+}
+
+t_point	**get_point_matrix(int file)
+{
+	int		row;
+	t_point	**points;
+	char	*line;
+	int		number_x_points;
+
+	get_next_line(file, &line);
+	number_x_points = count_points(line);
+	points = malloc(sizeof(*points) * (SIZE));
+	row = 0;
+	while (*line != '\0')
+	{
+		points[row] = get_row_of_points(line, row, number_x_points);
+		get_next_line(file, &line);
+		row++;
+	}
+	points[row] = NULL;
+	return (points);
 }

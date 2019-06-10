@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/08 23:16:46 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/09 21:01:00 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@
 # define WINDOW_HEIGHT 740
 # define WINDOW_NAME "FDF"
 
-# define MULTIPLIER 50
-# define OFFSET 200
+# define MULTIPLIER 25
+# define OFFSET 100
 
 # ifndef EXIT
 #  define EXIT(error_msg) ft_puterror(error_msg)
@@ -55,15 +55,6 @@
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** FILE: input.c
-** Handles intial steps.
-*/
-
-int		count_points(char const *line);
-char	*fetch_hexadecimal(char const *string);
-
-/*
-** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
-** FILE: point_matrix.c
 */
 
 t_point	**get_point_matrix(int file);
@@ -73,8 +64,8 @@ t_point	**get_point_matrix(int file);
 ** FILE: application.c
 */
 
-int		draw(void **params);
 t_app	create_application(void);
+int		events_handler(void **params);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -82,11 +73,17 @@ t_app	create_application(void);
 ** Handles on the image
 */
 
-void	draw_line(t_point p1, t_point p2, t_app *app, int color);
+void	draw_line(t_point p1, t_point p2, t_app *app);
+void	draw(t_app *app, t_point **points);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** FILE: utils.c
+** Handles intial steps.
 */
+
+int		count_points(char const *line);
+char	*fetch_hexadecimal(char const *string);
 
 
 #endif

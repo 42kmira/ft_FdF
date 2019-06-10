@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/09 00:04:08 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/09 19:40:30 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	main(int aa, char const *argv[])
 	if (file == INVALID_FILE)
 		EXIT(RED"File could not be opened");
 	points = get_point_matrix(file);
-	print_points(points);
+	// print_points(points);
 	app = create_application();
-	mlx_loop_hook(app.mlx_connection, draw, (void*[2]){(void *)&app, (void *)points});
+	mlx_loop_hook(app.mlx_connection, events_handler, (void*[2]){(void *)&app, (void *)points});
 	mlx_loop(app.mlx_connection);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 20:56:45 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/09 19:17:05 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 13:39:55 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,13 @@ int		count_points(char const *line)
 			EXIT(RED"File is in an invalid format\n");
 	}
 	return (result);
+}
+
+void	swap_point(t_point *p1, t_point *p2)
+{
+	t_point tmp;
+
+	tmp = *p1;
+	*p1 = *p2;
+	*p2 = tmp;
 }

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 17:55:53 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/09 23:29:56 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 14:28:08 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,11 @@ void	normalize_points(t_point **points, int cols, int rows)
 		j = 0;
 		while (points[i][j].exist)
 		{
-			points[i][j].PX = ((WINDOW_WIDTH - (2 * OFFSET_X)) * j)
-									/ (cols - 1) + OFFSET_X;
-			points[i][j].PY = ((WINDOW_HEIGHT - (2 * OFFSET_Y)) * i)
-									/ (rows - 1) + OFFSET_Y;
-			points[i][j].PZ = ((WINDOW_WIDTH - (2 * OFFSET_X)) * j)
-									/ (cols - 1) + OFFSET_X;
+			points[i][j].PX = ((WINDOW_WIDTH - (2 * OFFSET_X)) * j) / (cols - 1) + OFFSET_X;
+			points[i][j].PY = ((WINDOW_HEIGHT - (2 * OFFSET_Y)) * i) / (rows - 1) + OFFSET_Y;
+			//Normalization of PZ is wrong. Needs to be fixed.
+			//Most likely we will need to find the max and do math on that
+			// points[i][j].PZ = ((WINDOW_WIDTH - (2 * OFFSET_X)) * j) / (cols - 1) + OFFSET_X;
 			j++;
 		}
 		i++;
@@ -45,13 +44,10 @@ t_point	get_point(char const *line, int x, int y)
 	t_point	result;
 
 	result.exist = 1;
-
 	result.PX = x;
 	result.PY = y;
 	result.PZ = ft_atoi(line);
-
 	result.color = NULL;
-
 	ft_bzero(result.id, 2);
 	result.id[0] = g_piece_id;
 	g_piece_id = g_piece_id + 1;

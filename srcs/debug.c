@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 22:56:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/09 21:39:37 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 14:29:43 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,14 @@ void	db_print_points(t_point **points)
 
 void	db_print_point_on_window(t_app *app, t_point p1, t_point p2)
 {
-	mlx_string_put(app->mlx_connection, app->window, p1.PX, p1.PY, 0xFFFF00, p1.id);
-	mlx_string_put(app->mlx_connection, app->window, p2.PX, p2.PY, 0xFFFF00, p2.id);
+	if (p1.PZ == 0)
+		mlx_string_put(app->mlx_connection, app->window, p1.PX, p1.PY, 0xFFFF00, p1.id);
+	else
+		mlx_string_put(app->mlx_connection, app->window, p1.PX, p1.PY, 0x0000FF, p1.id);
+	if (p2.PZ == 0)
+		mlx_string_put(app->mlx_connection, app->window, p2.PX, p2.PY, 0xFFFF00, p2.id);
+	else
+		mlx_string_put(app->mlx_connection, app->window, p2.PX, p2.PY, 0x0000FF, p2.id);
 }
 
 void	db_print_line(t_point p1, t_point p2)

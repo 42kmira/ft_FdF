@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/09 23:26:29 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 13:46:01 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ int		events_handler(void **params);
 ** Handles on the image
 */
 
-void	draw_line(t_point p1, t_point p2, t_app *app);
-void	draw(t_app *app, t_point **points);
+void	connect_points(t_point p1, t_point p2, t_app *app);
+void	draw_lines(t_app *app, t_point **points);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -85,6 +85,7 @@ void	draw(t_app *app, t_point **points);
 
 int		count_points(char const *line);
 char	*fetch_hexadecimal(char const *string);
+void	swap_point(t_point *p1, t_point *p2);
 
 
 #endif

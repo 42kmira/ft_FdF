@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 03:03:50 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/09 20:59:35 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 13:24:19 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ t_app	create_application(void)
 
 int		events_handler(void **params)
 {
-	draw(params[APPLICATION], params[POINTS]);
+	draw_lines(params[APPLICATION], params[POINTS]);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/10 17:25:43 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 18:23:56 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ t_point	**get_point_matrix(int file);
 ** FILE: application.c
 */
 
+int		key_pressed(int key, void **params);
 t_app	create_application(void);
 int		events_handler(void **params);
 

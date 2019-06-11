@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 22:06:04 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/10 18:35:35 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 19:23:48 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,11 +62,14 @@ void		draw_line(t_point p1, t_point p2, t_app *app, t_camera *camera)
 {
 	/*	TRANSFORM POINTS HERE	*/
 
-	//Rotation transform
 	//Translation transform
-
 	translate_point(&p1, *camera);
 	translate_point(&p2, *camera);
+
+	//Rotation transform
+	rotate_point(&p1, *camera);
+	rotate_point(&p2, *camera);
+
 	//Clip space point
 	//3D to 2D transform
 

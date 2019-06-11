@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 16:22:00 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/10 17:22:10 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 19:18:02 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct		s_app
 
 typedef struct		s_camera
 {
-	int				rotation_x;
-	int				rotation_y;
+	int				rotation_angle_x;
+	int				rotation_angle_y;
 	int				pos[3];
 	int				target[3];
 }					t_camera;

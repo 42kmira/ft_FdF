@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/10 18:23:56 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 19:23:11 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,5 +103,6 @@ void	swap_point(t_point *p1, t_point *p2);
 */
 
 void	translate_point(t_point *point, t_camera camera);
+void	rotate_point(t_point *point, t_camera camera);
 
 #endif

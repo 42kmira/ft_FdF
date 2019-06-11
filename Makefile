@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:19:15 by kmira             #+#    #+#              #
-#    Updated: 2019/06/09 19:18:10 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/10 17:26:05 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,11 @@ LIBMLX = minilibx_macos/libmlx.a
 FILES = \
 		debug \
 		application \
+		camera \
 		input \
 		main \
 		rendering \
+		transformations \
 		utils \
 
 MLB = -L./minilibx_macos/ -lmlx -framework OpenGL -framework AppKit

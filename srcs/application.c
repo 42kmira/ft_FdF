@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 03:03:50 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/10 13:24:19 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 17:24:54 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #define APPLICATION 0
 #define POINTS 1
+#define CAMERA 2
 
 t_app	create_application(void)
 {
@@ -27,6 +28,6 @@ t_app	create_application(void)
 
 int		events_handler(void **params)
 {
-	draw_lines(params[APPLICATION], params[POINTS]);
+	draw_lines(params[APPLICATION], params[POINTS], params[CAMERA]);
 	return (1);
 }

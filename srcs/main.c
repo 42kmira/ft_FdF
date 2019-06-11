@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/09 22:33:33 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 17:23:53 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	main(int aa, char const *argv[])
 	int			file;
 	t_point		**points;
 	t_app		app;
+	t_camera	camera;
 
 	if (aa != 2)
 		EXIT(RED"FdF usage: Invalid amount of arguements");
@@ -26,10 +27,10 @@ int	main(int aa, char const *argv[])
 	if (file == INVALID_FILE)
 		EXIT(RED"File could not be opened");
 	points = get_point_matrix(file);
-	// print_points(points);
 	app = create_application();
+	camera = create_camera();
 	// prepration_step()
-	mlx_loop_hook(app.mlx_connection, events_handler, (void*[2]){(void *)&app, (void *)points});
+	mlx_loop_hook(app.mlx_connection, events_handler, (void*[3]){(void *)&app, (void *)points, (void *)&camera});
 	mlx_loop(app.mlx_connection);
 	return (0);
 }

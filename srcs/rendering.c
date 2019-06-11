@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 22:06:04 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/10 14:27:59 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 17:33:16 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,16 @@ void		draw_vertical_line(t_point p1, t_point p2, t_app *app)
 	}
 }
 
-void		draw_line(t_point p1, t_point p2, t_app *app)
+void		draw_line(t_point p1, t_point p2, t_app *app, t_camera *camera)
 {
 	/*	TRANSFORM POINTS HERE	*/
 
 	//Rotation transform
 	//Translation transform
+	camera->PX = -360;
+
+	translate_point(&p1, *camera);
+	translate_point(&p2, *camera);
 	//Clip space point
 	//3D to 2D transform
 
@@ -76,7 +80,7 @@ void		draw_line(t_point p1, t_point p2, t_app *app)
 		connect_points(p1, p2, app);
 }
 
-void		draw_lines(t_app *app, t_point **points)
+void		draw_lines(t_app *app, t_point **points, t_camera *camera)
 {
 	int		i;
 	int		j;
@@ -87,7 +91,7 @@ void		draw_lines(t_app *app, t_point **points)
 		j = 1;
 		while (points[i][j].exist)
 		{
-			draw_line(points[i][j - 1], points[i][j], app);
+			draw_line(points[i][j - 1], points[i][j], app, camera);
 			j++;
 		}
 		i++;
@@ -99,7 +103,7 @@ void		draw_lines(t_app *app, t_point **points)
 		i = 1;
 		while (points[i] != NULL)
 		{
-			draw_line(points[i - 1][j], points[i][j], app);
+			draw_line(points[i - 1][j], points[i][j], app, camera);
 			i++;
 		}
 		i = 0;

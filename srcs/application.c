@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 03:03:50 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/10 19:18:58 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/11 18:58:18 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,32 +32,32 @@ int	key_pressed(int key, void **params)
 
 	camera = params[2];
 	if (key == 123)
-		camera->PX -= 1;
+		camera->PX -= 10;
 	if (key == 124)
-		camera->PX += 1;
+		camera->PX += 10;
 	if (key == 125)
-		camera->PY += 1;
+		camera->PY += 10;
 	if (key == 126)
-		camera->PY -= 1;
+		camera->PY -= 10;
 
 	if (key == 91)
 	{
-		printf("UP\n");
+		// printf("UP\n");
 		camera->rotation_angle_x += 1;
 	}
 	if (key == 84)
 	{
-		printf("DOWN\n");
+		// printf("DOWN\n");
 		camera->rotation_angle_x -= 1;
 	}
 	if (key == 86)
 	{
-		printf("LEFT\n");
+		// printf("LEFT\n");
 		camera->rotation_angle_y += 1;
 	}
 	if (key == 88)
 	{
-		printf("RIGHT\n");
+		// printf("RIGHT\n");
 		camera->rotation_angle_y -= 1;
 	}
 	return (1);

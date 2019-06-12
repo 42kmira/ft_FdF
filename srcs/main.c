@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/10 18:42:53 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/10 21:31:48 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	main(int aa, char const *argv[])
 	file = open(file_name, O_RDONLY);
 	if (file == INVALID_FILE)
 		EXIT(RED"File could not be opened");
+	camera = create_camera();
 	points = get_point_matrix(file);
 	app = create_application();
-	camera = create_camera();
 	// prepration_step()
 	mlx_hook (app.window, 2, 0, key_pressed, (void*[3]){(void *)&app, (void *)points, (void *)&camera});
 	mlx_loop_hook(app.mlx_connection, events_handler, (void*[3]){(void *)&app, (void *)points, (void *)&camera});

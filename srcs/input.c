@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 17:55:53 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/10 22:09:49 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/11 21:02:22 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ void	normalize_points(t_point **points, int cols, int rows)
 		while (points[i][j].exist)
 		{
 			// if (cols > 1)
-				points[i][j].PX = ((WINDOW_WIDTH - (2 * OFFSET_X)) * j) / (cols - 1) + OFFSET_X;
+				points[i][j].PX = ((WINDOW_WIDTH - (2 * OFFSET_X)) * j) / (cols - 1);
 			// if (rows > 1)
-				points[i][j].PY = ((WINDOW_HEIGHT - (2 * OFFSET_Y)) * i) / (rows - 1) + OFFSET_Y;
+				points[i][j].PY = ((WINDOW_HEIGHT - (2 * OFFSET_Y)) * i) / (rows - 1);
 			//Normalization of PZ is wrong. Needs to be fixed.
 			//Most likely we will need to find the max and do math on that
 			// points[i][j].PZ = ((WINDOW_WIDTH - (2 * OFFSET_X)) * j) / (cols - 1) + OFFSET_X;

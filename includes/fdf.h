@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/10 22:06:00 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/11 20:51:54 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@
 ** MARCOS
 */
 
-# define WINDOW_WIDTH 1024
-# define WINDOW_HEIGHT 740
+# define WINDOW_WIDTH 2048
+# define WINDOW_HEIGHT 1024
 # define WINDOW_NAME "FDF"
 
 # define MULTIPLIER 25
-# define OFFSET_X (WINDOW_WIDTH / 10)
-# define OFFSET_Y (WINDOW_HEIGHT / 6)
+# define OFFSET_X (WINDOW_WIDTH / 6)
+# define OFFSET_Y (WINDOW_HEIGHT / 4)
 
 # ifndef EXIT
 #  define EXIT(error_msg) ft_puterror(error_msg)

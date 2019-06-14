@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 17:55:53 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/11 21:02:22 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/13 21:49:56 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,11 @@ t_point	get_point(char const *line, int x, int y)
 	result.exist = 1;
 	result.PX = x;
 	result.PY = y;
-	result.PZ = ft_atoi(line);
+	result.PZ = ft_atoi(line) * 10;
 	result.color = NULL;
+	result.RGB = 0xFF0000;
+	if (result.PZ != 0)
+		result.RGB = 0x0000FF;
 	ft_bzero(result.id, 2);
 	result.id[0] = g_piece_id;
 	g_piece_id = g_piece_id + 1;

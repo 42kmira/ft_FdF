@@ -6,74 +6,66 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 22:06:04 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/11 21:01:05 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/13 21:33:54 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+#define DEF_COL p1.RGB
+
 void	connect_points_x(t_point p1, t_point p2, t_app *app)
 {
-	int cx = p2.PX - p1.PX;
-	int cy = p2.PY - p1.PY;
-	int j = p1.PY;
+	int cx;
+	int j;
 	int sum;
 	int move_y_by_one;
+	int color_delta;
+
+	color_delta = get_color_delta(p1, p2, 1);
 
 	sum = 0;
-
+	cx = p2.PX - p1.PX;
+	j = p1.PY;
 	while (p1.PX < p2.PX)
 	{
 		sum += (p2.PY - p1.PY);
 		move_y_by_one = sum / cx;
-		// printf("SUM: %d and move: %d\n", sum, move_y_by_one);
 		if (move_y_by_one >= 1 || move_y_by_one <= -1)
 		{
 			if (move_y_by_one >= 1)
 			{
 				sum -= cx;
-				j++;
+				j = j + 1;
 			}
 			else
 			{
 				sum += cx;
-				j--;
+				j = j - 1;
 			}
 		}
 		p1.PX += 1;
-		mlx_pixel_put(app->mlx_connection, app->window, p1.PX + OFFSET_X, j + OFFSET_Y, 0xFF0000);
-	}
-	(void)cy;
-}
-
-void		draw_vertical_line(t_point p1, t_point p2, t_app *app)
-{
-	int	delta;
-
-	delta = 1;
-
-	if (p1.PY > p2.PY)
-		delta = -1;
-	while (p1.PY != p2.PY)
-	{
-		mlx_pixel_put(app->mlx_connection, app->window, p1.PX + OFFSET_X, p1.PY + OFFSET_Y, 0xFF0000);
-		p1.PY = p1.PY + delta;
+		mlx_pixel_put(app->mlx_connection, app->window, p1.PX + OFFSET_X, j + OFFSET_Y, DEF_COL);
+		DEF_COL = DEF_COL - color_delta;
 	}
 }
 
 void	connect_points_y(t_point p1, t_point p2, t_app *app)
 {
-	int cy = p2.PY - p1.PY;
-	int cx = p2.PX - p1.PX;
-	int j = p1.PX;
+	int cy;
+	int j;
 	int sum;
 	int move_x_by_one;
+	int color_delta;
+
+	color_delta = get_color_delta(p1, p2, 0);
 
 	sum = 0;
-
+	cy = p2.PY - p1.PY;
+	j = p1.PX;
 	while (p1.PY < p2.PY)
 	{
-		sum += (cx);
+		sum += (p2.PX - p1.PX);
 		move_x_by_one = sum / cy;
 		if (move_x_by_one >= 1 || move_x_by_one <= -1)
 		{
@@ -89,7 +81,8 @@ void	connect_points_y(t_point p1, t_point p2, t_app *app)
 			}
 		}
 		p1.PY += 1;
-		mlx_pixel_put(app->mlx_connection, app->window, j + OFFSET_X, p1.PY + OFFSET_Y, 0x0000FF);
+		mlx_pixel_put(app->mlx_connection, app->window, j + OFFSET_X, p1.PY + OFFSET_Y, DEF_COL);
+		DEF_COL = DEF_COL - color_delta;
 	}
 }
 
@@ -120,19 +113,18 @@ void		draw_line(t_point p1, t_point p2, t_app *app, t_camera *camera)
 	if (p2.PY - p1.PY > y_max)
 		y_max = p2.PY - p1.PY;
 
-	if (p1.PX == p2.PX)
-		draw_vertical_line(p1, p2, app);
-	else if (x_max >= y_max)
-	{
-		if (p1.PX > p2.PX)
-			swap_point(&p1, &p2);
-		connect_points_x(p1, p2, app);
-	}
-	else
+
+	if (x_max <= y_max)
 	{
 		if (p1.PY > p2.PY)
 			swap_point(&p1, &p2);
 		connect_points_y(p1, p2, app);
+	}
+	else
+	{
+		if (p1.PX > p2.PX)
+			swap_point(&p1, &p2);
+		connect_points_x(p1, p2, app);
 	}
 }
 

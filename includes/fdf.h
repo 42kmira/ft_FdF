@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/11 20:51:54 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/13 19:06:36 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,8 @@ void	swap_point(t_point *p1, t_point *p2);
 
 void	translate_point(t_point *point, t_camera camera);
 void	rotate_point(t_point *point, t_camera camera);
+
+
+int		get_color_delta(t_point p1, t_point p2, int x);
 
 #endif

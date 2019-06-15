@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 17:55:53 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/13 21:49:56 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/15 01:52:22 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ t_point	*get_row_of_points(char const *line, int y, int number_x_points)
 	return (NULL);
 }
 
-t_point	**get_point_matrix(int file)
+t_point	**create_point_matrix(int file)
 {
 	int		row;
 	t_point	**points;

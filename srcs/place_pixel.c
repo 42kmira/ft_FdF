@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/13 16:05:57 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/13 21:52:39 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/14 14:07:06 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		get_color_delta(t_point p1, t_point p2, int x)
 	g_channel = ((p1.RGB & 0x00FF00) >> 8) - ((p2.RGB & 0x00FF00) >> 8);
 	b_channel = ((p1.RGB & 0x0000FF) >> 0) - ((p2.RGB & 0x0000FF) >> 0);
 
-	printf("CHANGE R: %d G: %d B: %d\n", r_channel, g_channel, b_channel);
+	// printf("CHANGE R: %d G: %d B: %d\n", r_channel, g_channel, b_channel);
 	if (x == 1)
 	{
 		if (p1.PX - p2.PX != 0)

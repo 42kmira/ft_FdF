@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 17:00:55 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/13 15:40:26 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/15 01:25:38 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 void	translate_point(t_point *point, t_camera camera)
 {
-	point->PX = point->PX + camera.PX;
-	point->PY = point->PY + camera.PY;
-	point->PZ = point->PZ + camera.PZ;
+	point->PX = point->PX - camera.PX;
+	point->PY = point->PY - camera.PY;
+	point->PZ = point->PZ - camera.PZ;
 }
 
 void	rotate_point(t_point *point, t_camera camera)
@@ -44,7 +44,7 @@ void	rotate_point(t_point *point, t_camera camera)
 	int tmp;
 	tmp = point->PY;
 
-	point->PY = (cos(x_angle) * point->PY) + (sin(x_angle) * point->PZ);
+	point->PY = (cos(x_angle) * point->PY) - (sin(x_angle) * point->PZ);
 	point->PZ = (sin(x_angle) * tmp) + (cos(x_angle) * point->PZ);
 
 	/*
@@ -53,18 +53,25 @@ void	rotate_point(t_point *point, t_camera camera)
 	*/
 
 	// //New PZ
-	// point->PX = (cos(y_angle) * point->PZ);
-	// point->PZ = (sin(y_angle) * point->PZ);
+	// point->PX = (sin(y_angle) * point->PZ);
+	// point->PZ = (cos(y_angle) * point->PZ);
 	// //new PX
 	// point->PX = (cos(y_angle) * point->PX);
 	// point->PZ = (sin(y_angle) * point->PX);
 	// The added value of both
 
 	tmp = point->PX;
-	point->PX = (cos(y_angle) * point->PZ) + (sin(y_angle) * point->PX);
-	point->PZ = (sin(y_angle) * tmp) + (sin(y_angle) * point->PZ);
+	point->PX = (cos(y_angle) * point->PX) + (sin(y_angle) * point->PZ);
+	point->PZ = -(cos(y_angle) * point->PZ) + (sin(y_angle) * tmp);
 
 	// point->PX = (point->PY * (sin(x_angle))) + ((point->PX) * (cos(x_angle)));
 	// point->PY = (point->PY * (cos(y_angle))) + ((point->PZ) * (cos(x_angle)));
 	// point->PY = (point->PY * (cos(y_angle))) + ((point->PX) * (sin(y_angle)));
+}
+
+void	scale_point(t_point *point, t_camera camera)
+{
+	point->PX = (int)(point->PX * camera.scaling[X]);
+	point->PY = (int)(point->PY * camera.scaling[Y]);
+	point->PZ = (int)(point->PZ * camera.scaling[Z]);
 }

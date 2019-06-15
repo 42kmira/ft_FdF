@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/13 19:06:36 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/15 01:51:18 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@
 # define WINDOW_NAME "FDF"
 
 # define MULTIPLIER 25
+# define SCALING_DELTA .25
 # define OFFSET_X (WINDOW_WIDTH / 6)
 # define OFFSET_Y (WINDOW_HEIGHT / 4)
+
+# define DELTA_ALTITUDE 10
 
 # ifndef EXIT
 #  define EXIT(error_msg) ft_puterror(error_msg)
@@ -58,7 +61,7 @@
 ** FILE: input.c
 */
 
-t_point	**get_point_matrix(int file);
+t_point	**create_point_matrix(int file);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -68,6 +71,7 @@ t_point	**get_point_matrix(int file);
 int		key_pressed(int key, void **params);
 t_app	create_application(void);
 int		events_handler(void **params);
+void	application_loop(t_app app, t_point **points, t_camera camera);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -104,6 +108,7 @@ void	swap_point(t_point *p1, t_point *p2);
 
 void	translate_point(t_point *point, t_camera camera);
 void	rotate_point(t_point *point, t_camera camera);
+void	scale_point(t_point *point, t_camera camera);
 
 
 int		get_color_delta(t_point p1, t_point p2, int x);

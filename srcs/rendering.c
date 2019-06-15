@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 22:06:04 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/13 21:33:54 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/14 16:03:42 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,10 @@ void		draw_line(t_point p1, t_point p2, t_app *app, t_camera *camera)
 	int x_max;
 	int y_max;
 	/*	TRANSFORM POINTS HERE	*/
+	//Scaling need to be done before rotation or translation.
+	scale_point(&p1, *camera);
+	scale_point(&p2, *camera);
+
 	//Rotation needs to be calculated before translation
 	//Rotation transform
 	rotate_point(&p1, *camera);

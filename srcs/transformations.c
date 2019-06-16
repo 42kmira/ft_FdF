@@ -6,20 +6,12 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 17:00:55 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 05:19:00 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 15:13:08 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <math.h>
-
-void	translate_point(t_point *point, t_camera camera)
-{
-	point->PX = point->PX - camera.PX;
-	point->PY = point->PY - camera.PY;
-}
-
-#define CENTER 300
 
 /*
 ** point->PY = (cos(x_angle) * (point->PY - CENTER))
@@ -30,6 +22,14 @@ void	translate_point(t_point *point, t_camera camera)
 **				+ (sin(y_angle) * point->PZ - CENTER);
 */
 
+void	translate_point(t_point *point, t_camera camera)
+{
+	point->screen_pos[X] = point->screen_pos[X] - camera.PX;
+	point->screen_pos[Y] = point->screen_pos[Y] - camera.PY;
+}
+
+#define CENTER 300
+
 void	rotate_point(t_point *point, t_camera camera)
 {
 	float	x_angle;
@@ -38,15 +38,15 @@ void	rotate_point(t_point *point, t_camera camera)
 
 	x_angle = (camera.rotation_angle_x * M_PI) / 180;
 	y_angle = (camera.rotation_angle_y * M_PI) / 180;
-	tmp = point->PY;
-	point->PY = (cos(x_angle) * (point->PY)) - (sin(x_angle) * (point->PZ));
-	point->PZ = (sin(x_angle) * (tmp)) + (cos(x_angle) * (point->PZ));
-	point->PX = (cos(y_angle) * (point->PX)) + (sin(y_angle) * point->PZ);
+	tmp = point->screen_pos[Y];
+	point->screen_pos[Y] = (cos(x_angle) * (point->screen_pos[Y])) - (sin(x_angle) * (point->screen_pos[Z]));
+	point->screen_pos[Z] = (sin(x_angle) * (tmp)) + (cos(x_angle) * (point->screen_pos[Z]));
+	point->screen_pos[X] = (cos(y_angle) * (point->screen_pos[X])) + (sin(y_angle) * point->screen_pos[Z]);
 }
 
 void	scale_point(t_point *point, t_camera camera)
 {
-	point->PX = (int)(point->PX * camera.scaling[X]);
-	point->PY = (int)(point->PY * camera.scaling[Y]);
-	point->PZ = (int)(point->PZ * camera.scaling[Z]);
+	point->screen_pos[X] = (int)(point->PX * camera.scaling[X]);
+	point->screen_pos[Y] = (int)(point->PY * camera.scaling[Y]);
+	point->screen_pos[Z] = (int)(point->PZ * camera.scaling[Z]);
 }

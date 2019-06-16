@@ -6,12 +6,11 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 22:06:04 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 05:33:43 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 15:25:58 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
 #define DEF_COL p1.RGB
 
 void	connect_points_x(t_point p1, t_point p2, t_app *app)
@@ -24,11 +23,11 @@ void	connect_points_x(t_point p1, t_point p2, t_app *app)
 
 	color_delta = get_color_delta(p1, p2, 1);
 	sum = 0;
-	cx = p2.PX - p1.PX;
-	j = p1.PY;
-	while (p1.PX < p2.PX)
+	cx = p2.screen_pos[X] - p1.screen_pos[X];
+	j = p1.screen_pos[Y];
+	while (p1.screen_pos[X] < p2.screen_pos[X])
 	{
-		sum += (p2.PY - p1.PY);
+		sum += (p2.screen_pos[Y] - p1.screen_pos[Y]);
 		move_y_by_one = sum / cx;
 		if (move_y_by_one >= 1 || move_y_by_one <= -1)
 		{
@@ -43,8 +42,8 @@ void	connect_points_x(t_point p1, t_point p2, t_app *app)
 				j = j - 1;
 			}
 		}
-		p1.PX += 1;
-		mlx_pixel_put(app->mlx_connection, app->window, p1.PX + OFFSET_X, j + OFFSET_Y, DEF_COL);
+		p1.screen_pos[X] += 1;
+		mlx_pixel_put(app->mlx_connection, app->window, p1.screen_pos[X] + OFFSET_X, j + OFFSET_Y, DEF_COL);
 		DEF_COL = DEF_COL - color_delta;
 	}
 }
@@ -59,11 +58,11 @@ void	connect_points_y(t_point p1, t_point p2, t_app *app)
 
 	color_delta = get_color_delta(p1, p2, 0);
 	sum = 0;
-	cy = p2.PY - p1.PY;
-	j = p1.PX;
-	while (p1.PY < p2.PY)
+	cy = p2.screen_pos[Y] - p1.screen_pos[Y];
+	j = p1.screen_pos[X];
+	while (p1.screen_pos[Y] < p2.screen_pos[Y])
 	{
-		sum += (p2.PX - p1.PX);
+		sum += (p2.screen_pos[X] - p1.screen_pos[X]);
 		move_x_by_one = sum / cy;
 		if (move_x_by_one >= 1 || move_x_by_one <= -1)
 		{
@@ -78,8 +77,8 @@ void	connect_points_y(t_point p1, t_point p2, t_app *app)
 				j = j - 1;
 			}
 		}
-		p1.PY += 1;
-		mlx_pixel_put(app->mlx_connection, app->window, j + OFFSET_X, p1.PY + OFFSET_Y, DEF_COL);
+		p1.screen_pos[Y] += 1;
+		mlx_pixel_put(app->mlx_connection, app->window, j + OFFSET_X, p1.screen_pos[Y] + OFFSET_Y, DEF_COL);
 		DEF_COL = DEF_COL - color_delta;
 	}
 }
@@ -89,48 +88,26 @@ void	draw_line(t_point p1, t_point p2, t_app *app, t_camera *camera)
 	int x_max;
 	int y_max;
 
-	scale_point(&p1, *camera);
-	scale_point(&p2, *camera);
-	rotate_point(&p1, *camera);
-	rotate_point(&p2, *camera);
-	translate_point(&p1, *camera);
-	translate_point(&p2, *camera);
-	x_max = p1.PX - p2.PX;
-	y_max = p1.PY - p2.PY;
-	if (p2.PX - p1.PX > x_max)
-		x_max = p2.PX - p1.PX;
-	if (p2.PY - p1.PY > y_max)
-		y_max = p2.PY - p1.PY;
+	x_max = p1.screen_pos[X] - p2.screen_pos[X];
+	y_max = p1.screen_pos[Y] - p2.screen_pos[Y];
+	if (p2.screen_pos[X] - p1.screen_pos[X] > x_max)
+		x_max = p2.screen_pos[X] - p1.screen_pos[X];
+	if (p2.screen_pos[Y] - p1.screen_pos[Y] > y_max)
+		y_max = p2.screen_pos[Y] - p1.screen_pos[Y];
 	if (x_max <= y_max)
 	{
-		if (p1.PY > p2.PY)
+		if (p1.screen_pos[Y] > p2.screen_pos[Y])
 			swap_point(&p1, &p2);
 		connect_points_y(p1, p2, app);
 	}
 	else
 	{
-		if (p1.PX > p2.PX)
+		if (p1.screen_pos[X] > p2.screen_pos[X])
 			swap_point(&p1, &p2);
 		connect_points_x(p1, p2, app);
 	}
+	(void)camera;
 }
-
-/*
-** One loop to do both horizontal and veritcal line drawing
-** mlx_clear_window(g_mp, g_wp);
-** g_c.y = g_mh;
-** while (--g_c.y >= 0)
-** {
-** 	g_c.x = g_mw;
-** 	while (--g_c.x >= 0)
-** 	{
-** 		if (g_c.y != g_mh - 1)
-** 			connect(g_c.x, g_c.y, g_c.x, g_c.y + 1);
-** 		if (g_c.x != g_mw - 1)
-** 			connect(g_c.x, g_c.y, g_c.x + 1, g_c.y);
-** 	}
-** }
-*/
 
 void	draw_lines(t_app *app, t_point **points, t_camera *camera)
 {
@@ -138,6 +115,21 @@ void	draw_lines(t_app *app, t_point **points, t_camera *camera)
 	size_t	j;
 
 	i = 0;
+	// printf("Rendering once\n");
+	while (points[i] != NULL)
+	{
+		j = 0;
+		while (points[i][j].exist)
+		{
+			scale_point(&points[i][j], *camera);
+			rotate_point(&points[i][j], *camera);
+			translate_point(&points[i][j], *camera);
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	j = 0;
 	while (points[i] != NULL)
 	{
 		j = 1;
@@ -158,6 +150,7 @@ void	draw_lines(t_app *app, t_point **points, t_camera *camera)
 			draw_line(points[i - 1][j], points[i][j], app, camera);
 			i++;
 		}
+		i = 0;
 		j++;
 	}
 }

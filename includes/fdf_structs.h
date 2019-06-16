@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 16:22:00 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 05:32:55 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 15:09:05 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct		s_point
 	char			id[2];
 
 	int				pos[3];
+	int				screen_pos[3];
 	char			*color;
 	int				rgb;
 }					t_point;

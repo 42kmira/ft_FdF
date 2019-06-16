@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 17:55:53 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 03:25:27 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 04:01:25 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ t_point	parse_point(char const *line, int x, int y, int *index)
 		result.color = fetch_hexadecimal(&line[*index]);
 		*index = *index + ft_strlen(result.color) + 3;
 		result.RGB = a_to_color(result.color);
+		free(result.color);
 	}
 	return (result);
 }
@@ -106,24 +107,22 @@ t_point	**create_point_matrix(int file)
 	size_t	row;
 	t_point	**points;
 	int		new_line_read;
-	char	*line_head;
 	char	*line;
 	int		number_x_points;
 
-	points = malloc(sizeof(*points) * (300));
+	points = malloc(sizeof(*points) * (516));
 	new_line_read = get_next_line(file, &line);
 	number_x_points = count_points(line);
 	row = 0;
 	while (new_line_read)
 	{
-		line_head = line;
 		points[row] = get_point_row(line, row, number_x_points);
 		free(line);
 		line = NULL;
 		new_line_read = get_next_line(file, &line);
 		row++;
 	}
-	// free(line);
+	free(line);
 	close(file);
 	points[row] = NULL;
 	normalize_points(points, number_x_points, row);

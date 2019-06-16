@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 22:06:04 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 02:37:52 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 04:57:23 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,8 @@ void		draw_line(t_point p1, t_point p2, t_app *app, t_camera *camera)
 	rotate_point(&p2, *camera);
 
 	//Translation transform
-	translate_point(&p1, *camera);
-	translate_point(&p2, *camera);
+	// translate_point(&p1, *camera);
+	// translate_point(&p2, *camera);
 
 
 	//Clip space point
@@ -132,6 +132,23 @@ void		draw_line(t_point p1, t_point p2, t_app *app, t_camera *camera)
 	}
 	(void)camera;
 }
+
+/*
+** One loop to do both horizontal and veritcal line drawing
+*/
+	// mlx_clear_window(g_mp, g_wp);
+	// g_c.y = g_mh;
+	// while (--g_c.y >= 0)
+	// {
+	// 	g_c.x = g_mw;
+	// 	while (--g_c.x >= 0)
+	// 	{
+	// 		if (g_c.y != g_mh - 1)
+	// 			connect(g_c.x, g_c.y, g_c.x, g_c.y + 1);
+	// 		if (g_c.x != g_mw - 1)
+	// 			connect(g_c.x, g_c.y, g_c.x + 1, g_c.y);
+	// 	}
+	// }
 
 void		draw_lines(t_app *app, t_point **points, t_camera *camera)
 {

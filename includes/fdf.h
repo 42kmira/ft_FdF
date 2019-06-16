@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/15 01:51:18 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 02:51:59 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@
 # define OFFSET_X (WINDOW_WIDTH / 6)
 # define OFFSET_Y (WINDOW_HEIGHT / 4)
 
-# define DELTA_ALTITUDE 10
+# define DELTA_ALTITUDE 15
+# define DELTA_TRANSLATE 50
+# define DELTA_ROTATE 5
 
 # ifndef EXIT
 #  define EXIT(error_msg) ft_puterror(error_msg)
@@ -58,7 +60,7 @@
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
-** FILE: input.c
+** FILE: input_program.c
 */
 
 t_point	**create_point_matrix(int file);
@@ -99,6 +101,7 @@ void	draw_lines(t_app *app, t_point **points, t_camera *camera);
 int		count_points(char const *line);
 char	*fetch_hexadecimal(char const *string);
 void	swap_point(t_point *p1, t_point *p2);
+int		a_to_color(char *color);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-

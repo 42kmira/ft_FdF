@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:19:15 by kmira             #+#    #+#              #
-#    Updated: 2019/06/13 16:27:17 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/15 16:06:48 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ FILES = \
 		debug \
 		application \
 		camera \
-		input \
+		input_program \
 		main \
 		place_pixel \
 		rendering \

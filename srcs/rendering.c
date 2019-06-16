@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 22:06:04 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/14 16:03:42 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 02:37:52 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void		draw_line(t_point p1, t_point p2, t_app *app, t_camera *camera)
 			swap_point(&p1, &p2);
 		connect_points_x(p1, p2, app);
 	}
+	(void)camera;
 }
 
 void		draw_lines(t_app *app, t_point **points, t_camera *camera)
@@ -137,6 +138,20 @@ void		draw_lines(t_app *app, t_point **points, t_camera *camera)
 	int		i;
 	int		j;
 
+	// i = 0;
+	// j = 0;
+	// while (points[i] != NULL)
+	// {
+	// 	j = 0;
+	// 	while (points[i][j].exist)
+	// 	{
+	// 		scale_point(&points[i][j], *camera);
+	// 		rotate_point(&points[i][j], *camera);
+	// 		translate_point(&points[i][j], *camera);
+	// 		j++;
+	// 	}
+	// 	i++;
+	// }
 	i = 0;
 	while (points[i] != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 20:56:45 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/10 13:39:55 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/15 19:30:23 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,4 +84,23 @@ void	swap_point(t_point *p1, t_point *p2)
 	tmp = *p1;
 	*p1 = *p2;
 	*p2 = tmp;
+}
+
+int		a_to_color(char *color)
+{
+	int	result;
+	int	i;
+
+	i = 0;
+	result = 0;
+	while (color[i] != '\0')
+	{
+		result = result << 4;
+		if (ft_isdigit(color[i]))
+			result = result + (color[i] - '0');
+		if ('a' <= ft_tolower(color[i]) && ft_tolower(color[i]) <= 'f')
+			result = result + (ft_tolower(color[i]) - 'a') + 10;
+		i++;
+	}
+	return (result);
 }

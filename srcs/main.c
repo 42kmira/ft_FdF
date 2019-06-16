@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/15 02:17:25 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 03:22:45 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	main(int aa, char const *argv[])
 	points = create_point_matrix(file);
 	camera = create_camera();
 	app = create_application();
+	draw_lines(&app, points, &camera);
 	application_loop(app, points, camera);
 	return (0);
 }

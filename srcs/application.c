@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 03:03:50 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/15 01:49:33 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 03:27:18 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,24 @@ int		key_pressed(int key, void **params)
 {
 	t_camera *camera;
 
-	printf("%d\n", key);
+	// printf("%d\n", key);
 	camera = params[CAMERA];
 	if (key == 123)
-		camera->PX -= 10;
+		camera->PX -= DELTA_TRANSLATE;
 	if (key == 124)
-		camera->PX += 10;
+		camera->PX += DELTA_TRANSLATE;
 	if (key == 125)
-		camera->PY += 10;
+		camera->PY += DELTA_TRANSLATE;
 	if (key == 126)
-		camera->PY -= 10;
+		camera->PY -= DELTA_TRANSLATE;
 	if (key == 91)
-		camera->rotation_angle_x += 1;
+		camera->rotation_angle_x += DELTA_ROTATE;
 	if (key == 84)
-		camera->rotation_angle_x -= 1;
+		camera->rotation_angle_x -= DELTA_ROTATE;
 	if (key == 86)
-		camera->rotation_angle_y += 1;
+		camera->rotation_angle_y += DELTA_ROTATE;
 	if (key == 88)
-		camera->rotation_angle_y -= 1;
+		camera->rotation_angle_y -= DELTA_ROTATE;
 	if (key == 47)
 		camera->scaling[Z] += SCALING_DELTA;
 	if (key == 43)
@@ -67,16 +67,26 @@ int		key_pressed(int key, void **params)
 		camera->scaling[Y] -= SCALING_DELTA;
 		camera->scaling[Z] -= SCALING_DELTA;
 	}
-	return (1);
-}
+	if (key == 53)
+		EXIT(GREEN"Program is closing now");
 
-int		events_handler(void **params)
-{
+
 	t_app	*application;
 
 	application = params[APPLICATION];
 	mlx_clear_window(application->mlx_connection, application->window);
 	draw_lines(params[APPLICATION], params[POINTS], params[CAMERA]);
+	return (1);
+}
+
+int		events_handler(void **params)
+{
+	// t_app	*application;
+
+	// application = params[APPLICATION];
+	// mlx_clear_window(application->mlx_connection, application->window);
+	// draw_lines(params[APPLICATION], params[POINTS], params[CAMERA]);
+	(void)params;
 	return (1);
 }
 
@@ -86,6 +96,6 @@ void	application_loop(t_app app, t_point **points, t_camera camera)
 {
 	mlx_hook(app.window, 2, 0, key_pressed, PARAMS);
 	// mlx_hook(app.window, 3, 0, key_pressed, PARAMS);
-	mlx_loop_hook(app.mlx_connection, events_handler, PARAMS);
+	// mlx_loop_hook(app.mlx_connection, events_handler, PARAMS);
 	mlx_loop(app.mlx_connection);
 }

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 16:22:00 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/15 01:24:37 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 05:32:55 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define Y 1
 # define Z 2
 
+# define RGB rgb
 
 typedef struct		s_point
 {
@@ -29,7 +30,7 @@ typedef struct		s_point
 
 	int				pos[3];
 	char			*color;
-	int				RGB;
+	int				rgb;
 }					t_point;
 
 typedef struct		s_app

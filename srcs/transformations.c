@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 17:00:55 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 04:42:28 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 05:19:00 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,58 +17,31 @@ void	translate_point(t_point *point, t_camera camera)
 {
 	point->PX = point->PX - camera.PX;
 	point->PY = point->PY - camera.PY;
-	// point->PZ = point->PZ - camera.PZ;
 }
 
-#define CENTER 200
+#define CENTER 300
+
+/*
+** point->PY = (cos(x_angle) * (point->PY - CENTER))
+**				- (sin(x_angle) * (point->PZ - CENTER));
+** point->PZ = (sin(x_angle) * (tmp - CENTER))
+**				+ (cos(x_angle) * (point->PZ - CENTER));
+** point->PX = (cos(y_angle) * (point->PX - CENTER))
+**				+ (sin(y_angle) * point->PZ - CENTER);
+*/
 
 void	rotate_point(t_point *point, t_camera camera)
 {
 	float	x_angle;
 	float	y_angle;
+	int		tmp;
 
 	x_angle = (camera.rotation_angle_x * M_PI) / 180;
 	y_angle = (camera.rotation_angle_y * M_PI) / 180;
-
-
-	/*
-	** Applies the x_angle rotation. Rotating across the x-axis
-	** x axis stays in place doesn't change.
-	*/
-
-	// //New PY
-	// point->PY = (cos(x_angle) * point->PY);
-	// point->PZ = (sin(x_angle) * point->PY);
-	// //new PZ
-	// point->PZ = (cos(x_angle) * point->PZ);
-	// point->PY = (sin(x_angle) * point->PZ);
-	// The added value of both
-	int tmp;
 	tmp = point->PY;
-
-	point->PY = (cos(x_angle) * (point->PY - CENTER)) - (sin(x_angle) * (point->PZ - CENTER));
-	point->PZ = (sin(x_angle) * (tmp - CENTER)) + (cos(x_angle) * (point->PZ - CENTER));
-
-	/*
-	** Based on the new points after the x-axis rotation the y-axis rotation is applied.
-	** It is necessary for it to be applied on the new y-axis.
-	*/
-
-	// //New PZ
-	// point->PX = (sin(y_angle) * point->PZ);
-	// point->PZ = (cos(y_angle) * point->PZ);
-	// //new PX
-	// point->PX = (cos(y_angle) * point->PX);
-	// point->PZ = (sin(y_angle) * point->PX);
-	// The added value of both
-
-	point->PX = (cos(y_angle) * (point->PX - CENTER)) + (sin(y_angle) * point->PZ - CENTER);
-	// tmp = point->PX;
-	// point->PZ = -(cos(y_angle) * (point->PZ - CENTER)) + (sin(y_angle) * (tmp - CENTER));
-
-	// point->PX = (point->PY * (sin(x_angle))) + ((point->PX) * (cos(x_angle)));
-	// point->PY = (point->PY * (cos(y_angle))) + ((point->PZ) * (cos(x_angle)));
-	// point->PY = (point->PY * (cos(y_angle))) + ((point->PX) * (sin(y_angle)));
+	point->PY = (cos(x_angle) * (point->PY)) - (sin(x_angle) * (point->PZ));
+	point->PZ = (sin(x_angle) * (tmp)) + (cos(x_angle) * (point->PZ));
+	point->PX = (cos(y_angle) * (point->PX)) + (sin(y_angle) * point->PZ);
 }
 
 void	scale_point(t_point *point, t_camera camera)

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 04:52:53 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 05:33:50 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,10 @@
 # define WINDOW_HEIGHT 1200
 # define WINDOW_NAME "FDF"
 
-# define MULTIPLIER 25
-# define SCALING_DELTA .25
 # define OFFSET_X (WINDOW_WIDTH / 6)
 # define OFFSET_Y (WINDOW_HEIGHT / 4)
 
+# define SCALING_DELTA .25
 # define DELTA_ALTITUDE 50
 # define DELTA_TRANSLATE 50
 # define DELTA_ROTATE 7
@@ -63,17 +62,17 @@
 ** FILE: input_program.c
 */
 
-t_point	**create_point_matrix(int file);
+t_point		**create_point_matrix(int file);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** FILE: application.c
 */
 
-int		key_pressed(int key, void **params);
-t_app	create_application(void);
-int		events_handler(void **params);
-void	application_loop(t_app app, t_point **points, t_camera camera);
+int			key_pressed(int key, void **params);
+t_app		create_application(void);
+int			events_handler(void **params);
+void		application_loop(t_app app, t_point **points, t_camera camera);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -82,15 +81,14 @@ void	application_loop(t_app app, t_point **points, t_camera camera);
 
 t_camera	create_camera(void);
 
-
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** FILE: rendering.c
 ** Handles on the image
 */
 
-void	connect_points(t_point p1, t_point p2, t_app *app);
-void	draw_lines(t_app *app, t_point **points, t_camera *camera);
+void		connect_points(t_point p1, t_point p2, t_app *app);
+void		draw_lines(t_app *app, t_point **points, t_camera *camera);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -98,10 +96,10 @@ void	draw_lines(t_app *app, t_point **points, t_camera *camera);
 ** Handles intial steps.
 */
 
-int		count_points(char const *line);
-char	*fetch_hexadecimal(char const *string);
-void	swap_point(t_point *p1, t_point *p2);
-int		a_to_color(char *color);
+int			count_points(char const *line);
+char		*fetch_hexadecimal(char const *string);
+void		swap_point(t_point *p1, t_point *p2);
+int			a_to_color(char *color);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -109,11 +107,16 @@ int		a_to_color(char *color);
 ** Does the matrix multiplication stuff.
 */
 
-void	translate_point(t_point *point, t_camera camera);
-void	rotate_point(t_point *point, t_camera camera);
-void	scale_point(t_point *point, t_camera camera);
+void		translate_point(t_point *point, t_camera camera);
+void		rotate_point(t_point *point, t_camera camera);
+void		scale_point(t_point *point, t_camera camera);
 
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** FILE: place_pixel.c
+** Handles the color side of things
+*/
 
-int		get_color_delta(t_point p1, t_point p2, int x);
+int			get_color_delta(t_point p1, t_point p2, int x);
 
 #endif

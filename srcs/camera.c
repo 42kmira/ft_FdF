@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 17:18:32 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/15 16:07:15 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 05:19:22 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_camera	create_camera(void)
 	camera.rotation_angle_y = 0;
 	camera.PX = 0;
 	camera.PY = 0;
-	camera.PZ = 0;
 	camera.scaling[X] = 1;
 	camera.scaling[Y] = 1;
 	camera.scaling[Z] = 1;

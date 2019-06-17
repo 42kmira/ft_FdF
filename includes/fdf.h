@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 05:33:50 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 22:48:20 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@
 # define INVALID_FILE -1
 
 # define SKIP_SPACE(l, i) while ((l)[(i)] != '\0' && (l)[(i)] == ' ') (i)++;
+# define SKIP_DIGIT(l, i) while ((l)[(i)] != '\0' && ft_isdigit(l[(i)])) (i)++;
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -118,5 +119,16 @@ void		scale_point(t_point *point, t_camera camera);
 */
 
 int			get_color_delta(t_point p1, t_point p2, int x);
+
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** FILE: input_application.c
+** Handles user input as the program is running
+*/
+
+t_keys		*key_table(t_camera *camera);
+int			toggle_flags_off(int key_pressed, void **params);
+int			toggle_flags_on(int key_pressed, void **params);
+int			render(void **params);
 
 #endif

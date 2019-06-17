@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 22:06:04 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 15:25:58 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 16:47:28 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,13 +109,12 @@ void	draw_line(t_point p1, t_point p2, t_app *app, t_camera *camera)
 	(void)camera;
 }
 
-void	draw_lines(t_app *app, t_point **points, t_camera *camera)
+void	transform_points(t_point **points, t_camera *camera)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
-	// printf("Rendering once\n");
 	while (points[i] != NULL)
 	{
 		j = 0;
@@ -128,28 +127,28 @@ void	draw_lines(t_app *app, t_point **points, t_camera *camera)
 		}
 		i++;
 	}
+}
+
+void	draw_lines(t_app *app, t_point **points, t_camera *camera)
+{
+	size_t	i;
+	size_t	j;
+
 	i = 0;
-	j = 0;
+	transform_points(points, camera);
 	while (points[i] != NULL)
 	{
-		j = 1;
-		while (points[i][j].exist)
-		{
+		j = 0;
+		while (points[i][++j].exist)
 			draw_line(points[i][j - 1], points[i][j], app, camera);
-			j++;
-		}
 		i++;
 	}
 	i = 0;
 	j = 0;
 	while (points[i] != NULL && points[i][j].exist)
 	{
-		i = 1;
-		while (points[i] != NULL)
-		{
+		while (points[++i] != NULL)
 			draw_line(points[i - 1][j], points[i][j], app, camera);
-			i++;
-		}
 		i = 0;
 		j++;
 	}

@@ -6,7 +6,7 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:19:15 by kmira             #+#    #+#              #
-#    Updated: 2019/06/15 16:06:48 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/16 22:02:45 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,9 @@ LIBRARY = libft/libft.a
 LIBMLX = minilibx_macos/libmlx.a
 
 FILES = \
-		debug \
 		application \
 		camera \
+		input_application \
 		input_program \
 		main \
 		place_pixel \

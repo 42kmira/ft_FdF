@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 03:03:50 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 05:34:42 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 23:12:57 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_app	create_application(void)
 int		key_pressed(int key, void **params)
 {
 	t_camera	*camera;
+	t_app		*application;
 
 	// printf("%d\n", key);
 	camera = params[CAMERA];
@@ -69,10 +70,6 @@ int		key_pressed(int key, void **params)
 	}
 	if (key == 53)
 		EXIT(GREEN"Program is closing now");
-
-
-	t_app	*application;
-
 	application = params[APPLICATION];
 	mlx_clear_window(application->mlx_connection, application->window);
 	draw_lines(params[APPLICATION], params[POINTS], params[CAMERA]);
@@ -83,7 +80,14 @@ int		key_pressed(int key, void **params)
 
 void	application_loop(t_app app, t_point **points, t_camera camera)
 {
-	mlx_hook(app.window, 2, 0, key_pressed, PARAMS);
-	// mlx_hook(app.window, 3, 0, key_pressed, PARAMS);
+	t_key_value keys;
+	t_keys		*key_dispatch_table;
+
+	keys = 0;
+	key_dispatch_table = key_table(&camera);
+	mlx_hook(app.window, 2, 0, toggle_flags_on, (void*[5]){(void *)&app, (void *)points, (void *)&camera, (void *)key_dispatch_table, (void *)&keys});
+	mlx_hook(app.window, 3, 0, toggle_flags_off, (void*[5]){(void *)&app, (void *)points, (void *)&camera, (void *)key_dispatch_table, (void *)&keys});
+	mlx_loop_hook(app.mlx_connection, render, (void*[5]){(void *)&app, (void *)points, (void *)&camera, (void *)key_dispatch_table, (void *)&keys});
+	(void)points;
 	mlx_loop(app.mlx_connection);
 }

@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 20:56:45 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 14:30:06 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 16:28:40 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,14 @@ int		count_points(char const *line)
 		if (ft_isdigit(line[i]))
 		{
 			result++;
-			while (line[i] != '\0' && ft_isdigit(line[i]))
-				i++;
+			SKIP_DIGIT(line, i);
 		}
 		color = fetch_hexadecimal(&line[i]);
 		if (color != NULL)
+		{
 			i += ft_strlen(color) + 3;
+			free(color);
+		}
 		SKIP_SPACE(line, i);
 		if (line[i] != '\0' && ft_isdigit(line[i]) == 0)
 			EXIT(RED"File is in an invalid format\n");

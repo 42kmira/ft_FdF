@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 17:00:55 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 15:13:08 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/16 16:33:52 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ void	translate_point(t_point *point, t_camera camera)
 
 #define CENTER 300
 
+#define SPX screen_pos[X]
+#define SPY screen_pos[Y]
+#define SPZ screen_pos[Z]
+
 void	rotate_point(t_point *point, t_camera camera)
 {
 	float	x_angle;
@@ -39,9 +43,9 @@ void	rotate_point(t_point *point, t_camera camera)
 	x_angle = (camera.rotation_angle_x * M_PI) / 180;
 	y_angle = (camera.rotation_angle_y * M_PI) / 180;
 	tmp = point->screen_pos[Y];
-	point->screen_pos[Y] = (cos(x_angle) * (point->screen_pos[Y])) - (sin(x_angle) * (point->screen_pos[Z]));
-	point->screen_pos[Z] = (sin(x_angle) * (tmp)) + (cos(x_angle) * (point->screen_pos[Z]));
-	point->screen_pos[X] = (cos(y_angle) * (point->screen_pos[X])) + (sin(y_angle) * point->screen_pos[Z]);
+	point->SPY = (cos(x_angle) * (point->SPY)) - (sin(x_angle) * (point->SPZ));
+	point->SPZ = (sin(x_angle) * (tmp)) + (cos(x_angle) * (point->SPZ));
+	point->SPX = (cos(y_angle) * (point->SPX)) + (sin(y_angle) * point->SPZ);
 }
 
 void	scale_point(t_point *point, t_camera camera)

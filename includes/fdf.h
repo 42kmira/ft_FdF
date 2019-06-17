@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 22:48:20 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/17 14:59:50 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** HEADERS
 */
-
-# include "debug.h"
 
 # include "libft.h"
 # include "ft_color.h"
@@ -37,8 +35,8 @@
 ** MARCOS
 */
 
-# define WINDOW_WIDTH 1500
-# define WINDOW_HEIGHT 1200
+# define WINDOW_WIDTH 2048
+# define WINDOW_HEIGHT 1024
 # define WINDOW_NAME "FDF"
 
 # define OFFSET_X (WINDOW_WIDTH / 6)
@@ -63,7 +61,15 @@
 ** FILE: input_program.c
 */
 
-t_point		**create_point_matrix(int file);
+t_point		**create_point_matrix(int file, char const *file_name);
+
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** FILE: input_program_utils.c
+*/
+
+int		count_rows(char const *file_name);
+int		count_points(char const *line);
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
@@ -97,7 +103,6 @@ void		draw_lines(t_app *app, t_point **points, t_camera *camera);
 ** Handles intial steps.
 */
 
-int			count_points(char const *line);
 char		*fetch_hexadecimal(char const *string);
 void		swap_point(t_point *p1, t_point *p2);
 int			a_to_color(char *color);
@@ -126,7 +131,7 @@ int			get_color_delta(t_point p1, t_point p2, int x);
 ** Handles user input as the program is running
 */
 
-t_keys		*key_table(t_camera *camera);
+t_keys		*get_key_table(t_camera *camera);
 int			toggle_flags_off(int key_pressed, void **params);
 int			toggle_flags_on(int key_pressed, void **params);
 int			render(void **params);

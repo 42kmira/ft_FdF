@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 17:55:53 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 16:29:10 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/17 13:45:00 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_point	parse_point(char const *line, int x, int y, int *index)
 	result.PX = x;
 	result.PY = y;
 	result.PZ = ft_atoi(&line[*index]);
-	while (ft_isdigit(line[*index]))
+	while (ft_isdigit(line[*index]) || line[*index] == '-')
 		*index = *index + 1;
 	if (line[*index] != '\0' && line[*index] != ',' && line[*index] != ' ')
 		EXIT(RED"Invalid file format");
@@ -102,7 +102,9 @@ t_point	*get_point_row(char const *line, int row, int number_x_points)
 ** on the file.
 */
 
-t_point	**create_point_matrix(int file)
+#include <stdio.h>
+
+t_point	**create_point_matrix(int file, char const *file_name)
 {
 	size_t	row;
 	t_point	**points;
@@ -110,7 +112,7 @@ t_point	**create_point_matrix(int file)
 	char	*line;
 	int		number_x_points;
 
-	points = malloc(sizeof(*points) * (516));
+	points = malloc(sizeof(*points) * (count_rows(file_name) + 1));
 	new_line_read = get_next_line(file, &line);
 	number_x_points = count_points(line);
 	row = 0;

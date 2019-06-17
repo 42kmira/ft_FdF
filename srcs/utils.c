@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 20:56:45 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 16:28:40 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/17 13:33:09 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,35 +48,6 @@ char	*fetch_hexadecimal(char const *string)
 	}
 	else
 		return (NULL);
-}
-
-int		count_points(char const *line)
-{
-	int		result;
-	char	*color;
-	int		i;
-
-	i = 0;
-	result = 0;
-	while (line[i] != '\0')
-	{
-		SKIP_SPACE(line, i);
-		if (ft_isdigit(line[i]))
-		{
-			result++;
-			SKIP_DIGIT(line, i);
-		}
-		color = fetch_hexadecimal(&line[i]);
-		if (color != NULL)
-		{
-			i += ft_strlen(color) + 3;
-			free(color);
-		}
-		SKIP_SPACE(line, i);
-		if (line[i] != '\0' && ft_isdigit(line[i]) == 0)
-			EXIT(RED"File is in an invalid format\n");
-	}
-	return (result);
 }
 
 void	swap_point(t_point *p1, t_point *p2)

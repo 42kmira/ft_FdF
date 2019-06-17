@@ -6,11 +6,12 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 19:31:18 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/15 03:20:44 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/17 14:21:32 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 int main(int argc, char const *argv[])
@@ -27,5 +28,8 @@ int main(int argc, char const *argv[])
 
 	printf("%ld\n", 4294967296);
 	printf("%ju\n", 4294967296);
+	char *line = malloc(sizeof(*line) * 10);
+	line[9] = '\0';
+	// free(line);
 	return 0;
 }

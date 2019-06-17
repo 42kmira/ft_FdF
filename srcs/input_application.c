@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 20:34:04 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 23:29:29 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/17 13:51:58 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,31 @@
 
 #define KEY(NAME) { char_ ## NAME, FLAG_ ## NAME}
 
-t_keys	*key_table(t_camera *camera)
+t_keys	*get_key_table(t_camera *camera)
 {
 	t_keys *key_dispatch;
 
 	key_dispatch = malloc(sizeof(*key_dispatch) * (14));
-	key_dispatch[0]  = (t_keys){123,	KEY_UP,				&camera->PX,				-DELTA_TRANSLATE};
-	key_dispatch[1]  = (t_keys){124,	KEY_DOWN,			&camera->PX,				DELTA_TRANSLATE};
-	key_dispatch[2]  = (t_keys){125,	KEY_LEFT,			&camera->PY,				DELTA_TRANSLATE};
-	key_dispatch[3]  = (t_keys){126,	KEY_RIGHT,			&camera->PY,				-DELTA_TRANSLATE};
-	key_dispatch[4]  = (t_keys){91,		KEY_ROTATE_UP,		&camera->rotation_angle_x,	-DELTA_ROTATE};
-	key_dispatch[5]  = (t_keys){84,		KEY_ROTATE_DOWN,	&camera->rotation_angle_x,	DELTA_ROTATE};
-	key_dispatch[6]  = (t_keys){86,		KEY_ROTATE_LEFT,	&camera->rotation_angle_y,	DELTA_ROTATE};
-	key_dispatch[7]  = (t_keys){88,		KEY_ROTATE_RIGHT,	&camera->rotation_angle_y,	-DELTA_ROTATE};
-	key_dispatch[8]  = (t_keys){47,		KEY_INCREASE_ALT,	&camera->scaling[Z],		SCALING_DELTA};
-	key_dispatch[9]  = (t_keys){43,		KEY_DECREASE_ALT,	&camera->scaling[Z],		-SCALING_DELTA};
-	key_dispatch[10] = (t_keys){6,		KEY_ZOOM_IN,		NULL,						SCALING_DELTA};
-	key_dispatch[11] = (t_keys){7,		KEY_ZOOM_OUT,		NULL,						SCALING_DELTA};
-	key_dispatch[12] = (t_keys){53,		KEY_ESC,			NULL,						0};
-	key_dispatch[13] = (t_keys){0,		UNDEFINED_KEY,		NULL,						0};
+	key_dispatch[0] = (t_keys){123, KEY_UP, &camera->PX, -DELTA_TRANSLATE};
+	key_dispatch[1] = (t_keys){124, KEY_DOWN, &camera->PX, DELTA_TRANSLATE};
+	key_dispatch[2] = (t_keys){125, KEY_LEFT, &camera->PY, DELTA_TRANSLATE};
+	key_dispatch[3] = (t_keys){126, KEY_RIGHT, &camera->PY, -DELTA_TRANSLATE};
+	key_dispatch[4] = (t_keys){91, KEY_ROTATE_UP,
+	&camera->rotation_angle_x, -DELTA_ROTATE};
+	key_dispatch[5] = (t_keys){84, KEY_ROTATE_DOWN,
+	&camera->rotation_angle_x, DELTA_ROTATE};
+	key_dispatch[6] = (t_keys){86, KEY_ROTATE_LEFT,
+	&camera->rotation_angle_y, DELTA_ROTATE};
+	key_dispatch[7] = (t_keys){88, KEY_ROTATE_RIGHT,
+	&camera->rotation_angle_y, -DELTA_ROTATE};
+	key_dispatch[8] = (t_keys){47, KEY_INCREASE_ALT,
+	&camera->scaling[Z], SCALING_DELTA};
+	key_dispatch[9] = (t_keys){43, KEY_DECREASE_ALT,
+	&camera->scaling[Z], -SCALING_DELTA};
+	key_dispatch[10] = (t_keys){6, KEY_ZOOM_IN, NULL, SCALING_DELTA};
+	key_dispatch[11] = (t_keys){7, KEY_ZOOM_OUT, NULL, SCALING_DELTA};
+	key_dispatch[12] = (t_keys){53, KEY_ESC, NULL, 0};
+	key_dispatch[13] = (t_keys){0, UNDEFINED_KEY, NULL, 0};
 	return (key_dispatch);
 }
 
@@ -46,23 +52,33 @@ int		render(void **params)
 	t_keys		*key_dispatch_table;
 	t_camera	*camera;
 	t_key_value *keys;
+	t_app		*application;
 
 	i = 0;
-	keys = (t_key_value *)(params[4]);
-	camera = (t_camera *)(params[1]);
+	camera = (t_camera *)(params[2]);
 	key_dispatch_table = (t_keys *)(params[3]);
+	keys = (t_key_value *)(params[4]);
 	while (key_dispatch_table[i].flag != UNDEFINED_KEY)
 	{
 		if (*keys & key_dispatch_table[i].flag)
 		{
 			if (key_dispatch_table[i].flag == KEY_DECREASE_ALT || key_dispatch_table[i].flag == KEY_INCREASE_ALT)
 				*(float *)key_dispatch_table[i].modify = *(float *)key_dispatch_table[i].modify + key_dispatch_table[i].delta;
-			else if (key_dispatch_table[i].flag != KEY_ZOOM_IN && key_dispatch_table[i].flag != KEY_ZOOM_OUT && key_dispatch_table[i].flag != KEY_ESC)
+			else if (key_dispatch_table[i].flag == KEY_ZOOM_IN)
+			{
+				camera->scaling[X] = camera->scaling[X] + SCALING_DELTA;
+				camera->scaling[Y] = camera->scaling[Y] + SCALING_DELTA;
+			}
+			else if (key_dispatch_table[i].flag == KEY_ZOOM_OUT)
+			{
+				camera->scaling[X] = camera->scaling[X] - SCALING_DELTA;
+				camera->scaling[Y] = camera->scaling[Y] - SCALING_DELTA;
+			}
+			else if (key_dispatch_table[i].flag != KEY_ESC)
 				*(int *)key_dispatch_table[i].modify = *(int *)key_dispatch_table[i].modify + key_dispatch_table[i].delta;
 		}
 		i++;
 	}
-	t_app		*application;
 	application = params[APPLICATION];
 	mlx_clear_window(application->mlx_connection, application->window);
 	draw_lines(params[APPLICATION], params[POINTS], params[CAMERA]);

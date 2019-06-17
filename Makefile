@@ -6,13 +6,13 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:19:15 by kmira             #+#    #+#              #
-#    Updated: 2019/06/16 22:02:45 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/17 15:28:20 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -O2 -march=native
 
 INCLUDES = includes
 LIBRARY = libft/libft.a
@@ -23,6 +23,7 @@ FILES = \
 		camera \
 		input_application \
 		input_program \
+		input_program_utils \
 		main \
 		place_pixel \
 		rendering \

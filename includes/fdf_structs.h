@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 16:22:00 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/17 00:47:54 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/17 22:23:18 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ typedef struct		s_keys
 {
 	int				key;
 	t_key_value		flag;
-	void			*modify;
-	float			delta;
 }					t_keys;
 
 enum				e_keys

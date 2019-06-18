@@ -6,13 +6,13 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:19:15 by kmira             #+#    #+#              #
-#    Updated: 2019/06/17 15:28:20 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/18 01:13:17 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-FLAGS = -Wall -Wextra -Werror -O2 -march=native
+FLAGS = -Wall -Wextra -Werror -O3 -march=native
 
 INCLUDES = includes
 LIBRARY = libft/libft.a

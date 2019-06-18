@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/05 20:56:45 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/17 13:33:09 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/17 16:16:39 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,21 @@ int		a_to_color(char *color)
 		i++;
 	}
 	return (result);
+}
+
+void	change_point(int move_by_one, int *sum, int delta, int *j)
+{
+	if (move_by_one >= 1 || move_by_one <= -1)
+	{
+		if (move_by_one >= 1)
+		{
+			*sum = *sum - delta;
+			*j = *j + 1;
+		}
+		else
+		{
+			*sum = *sum + delta;
+			*j = *j - 1;
+		}
+	}
 }

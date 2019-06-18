@@ -6,16 +6,29 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/17 13:32:54 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/17 13:41:43 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/18 02:12:50 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+int		count_color_length(char const *line)
+{
+	size_t	result;
+	char	*color;
+
+	result = 0;
+	color = fetch_hexadecimal(line);
+	if (color != NULL)
+	{
+		result = ft_strlen(color) + 3;
+	}
+	return (result);
+}
+
 int		count_points(char const *line)
 {
 	int		result;
-	char	*color;
 	int		i;
 
 	i = 0;
@@ -30,12 +43,7 @@ int		count_points(char const *line)
 				i++;
 			SKIP_DIGIT(line, i);
 		}
-		color = fetch_hexadecimal(&line[i]);
-		if (color != NULL)
-		{
-			i += ft_strlen(color) + 3;
-			free(color);
-		}
+		i = i + count_color_length(&line[i]);
 		SKIP_SPACE(line, i);
 		if (line[i] != '\0' && line[i] != '-' && ft_isdigit(line[i]) == 0)
 			EXIT(RED"File is in an invalid format");
@@ -48,7 +56,6 @@ int		count_rows(char const *file_name)
 	size_t	result;
 	char	*line;
 	int		file;
-
 
 	result = 0;
 	line = NULL;

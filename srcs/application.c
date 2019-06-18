@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 03:03:50 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/17 14:49:09 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/18 00:46:36 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ void	application_loop(t_app app, t_point **points, t_camera camera)
 	t_keys		*key_table;
 
 	keys = 0;
-	key_table = get_key_table(&camera);
-	mlx_hook(app.window, 2, 0, toggle_flags_on, (void*[5]){PARAMS});
+	key_table = get_key_table();
 	mlx_hook(app.window, 3, 0, toggle_flags_off, (void*[5]){PARAMS});
+	mlx_hook(app.window, 2, 0, toggle_flags_on, (void*[5]){PARAMS});
 	mlx_loop_hook(app.mlx_connection, render, (void*[5]){PARAMS});
 	mlx_loop(app.mlx_connection);
 }

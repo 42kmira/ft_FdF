@@ -6,13 +6,11 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:13:33 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/17 15:29:27 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/18 02:20:08 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-
-#include <stdio.h>
 
 int	main(int aa, char const *argv[])
 {
@@ -32,7 +30,6 @@ int	main(int aa, char const *argv[])
 	camera = create_camera();
 	app = create_application();
 	draw_lines(&app, points, &camera);
-	system("leaks fdf");
 	application_loop(app, points, camera);
 	return (0);
 }

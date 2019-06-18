@@ -6,14 +6,12 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 17:55:53 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/17 13:45:00 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/18 02:19:51 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include "fdf_structs.h"
-
-#define SIZE 100
 
 /*
 ** Normalization of PZ is wrong. Needs to be fixed.
@@ -90,6 +88,7 @@ t_point	*get_point_row(char const *line, int row, int number_x_points)
 		SKIP_SPACE(line, i);
 		x++;
 	}
+	printf("Cols %d and %d\n", x, number_x_points);
 	point_row[x].exist = 0;
 	if (x == number_x_points)
 		return (point_row);
@@ -101,8 +100,6 @@ t_point	*get_point_row(char const *line, int row, int number_x_points)
 ** Hardcoded SIZE needs to be changed to a linked list or a double read
 ** on the file.
 */
-
-#include <stdio.h>
 
 t_point	**create_point_matrix(int file, char const *file_name)
 {

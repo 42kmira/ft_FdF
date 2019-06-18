@@ -6,12 +6,14 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 22:06:04 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/16 16:47:28 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/18 02:21:06 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #define DEF_COL p1.RGB
+
+#define APP app->mlx_connection, app->window
 
 void	connect_points_x(t_point p1, t_point p2, t_app *app)
 {
@@ -29,21 +31,9 @@ void	connect_points_x(t_point p1, t_point p2, t_app *app)
 	{
 		sum += (p2.screen_pos[Y] - p1.screen_pos[Y]);
 		move_y_by_one = sum / cx;
-		if (move_y_by_one >= 1 || move_y_by_one <= -1)
-		{
-			if (move_y_by_one >= 1)
-			{
-				sum -= cx;
-				j = j + 1;
-			}
-			else
-			{
-				sum += cx;
-				j = j - 1;
-			}
-		}
+		change_point(move_y_by_one, &sum, cx, &j);
 		p1.screen_pos[X] += 1;
-		mlx_pixel_put(app->mlx_connection, app->window, p1.screen_pos[X] + OFFSET_X, j + OFFSET_Y, DEF_COL);
+		mlx_pixel_put(APP, p1.screen_pos[X] + OFFSET_X, j + OFFSET_Y, DEF_COL);
 		DEF_COL = DEF_COL - color_delta;
 	}
 }
@@ -64,26 +54,14 @@ void	connect_points_y(t_point p1, t_point p2, t_app *app)
 	{
 		sum += (p2.screen_pos[X] - p1.screen_pos[X]);
 		move_x_by_one = sum / cy;
-		if (move_x_by_one >= 1 || move_x_by_one <= -1)
-		{
-			if (move_x_by_one >= 1)
-			{
-				sum -= cy;
-				j = j + 1;
-			}
-			else
-			{
-				sum += cy;
-				j = j - 1;
-			}
-		}
+		change_point(move_x_by_one, &sum, cy, &j);
 		p1.screen_pos[Y] += 1;
-		mlx_pixel_put(app->mlx_connection, app->window, j + OFFSET_X, p1.screen_pos[Y] + OFFSET_Y, DEF_COL);
+		mlx_pixel_put(APP, j + OFFSET_X, p1.screen_pos[Y] + OFFSET_Y, DEF_COL);
 		DEF_COL = DEF_COL - color_delta;
 	}
 }
 
-void	draw_line(t_point p1, t_point p2, t_app *app, t_camera *camera)
+void	draw_line(t_point p1, t_point p2, t_app *app)
 {
 	int x_max;
 	int y_max;
@@ -106,7 +84,6 @@ void	draw_line(t_point p1, t_point p2, t_app *app, t_camera *camera)
 			swap_point(&p1, &p2);
 		connect_points_x(p1, p2, app);
 	}
-	(void)camera;
 }
 
 void	transform_points(t_point **points, t_camera *camera)
@@ -140,7 +117,7 @@ void	draw_lines(t_app *app, t_point **points, t_camera *camera)
 	{
 		j = 0;
 		while (points[i][++j].exist)
-			draw_line(points[i][j - 1], points[i][j], app, camera);
+			draw_line(points[i][j - 1], points[i][j], app);
 		i++;
 	}
 	i = 0;
@@ -148,7 +125,7 @@ void	draw_lines(t_app *app, t_point **points, t_camera *camera)
 	while (points[i] != NULL && points[i][j].exist)
 	{
 		while (points[++i] != NULL)
-			draw_line(points[i - 1][j], points[i][j], app, camera);
+			draw_line(points[i - 1][j], points[i][j], app);
 		i = 0;
 		j++;
 	}

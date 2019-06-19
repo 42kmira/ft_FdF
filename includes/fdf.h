@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/04 18:14:25 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/18 01:47:36 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/18 21:23:03 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,24 +30,30 @@
 # include <sys/uio.h>
 # include <unistd.h>
 
-#include <stdio.h>
+# include <stdio.h>
 
 /*
 ** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
 ** MARCOS
 */
 
-# define WINDOW_WIDTH 1000
-# define WINDOW_HEIGHT 1000
+# define WINDOW_WIDTH 2048
+# define WINDOW_HEIGHT 1024
 # define WINDOW_NAME "FDF"
 
 # define OFFSET_X (WINDOW_WIDTH / 6)
 # define OFFSET_Y (WINDOW_HEIGHT / 4)
 
-# define DELTA_SCALE 1
+# define DELTA_SCALE .25
 # define DELTA_ALTITUDE 50
 # define DELTA_TRANSLATE 50
 # define DELTA_ROTATE 7
+
+# define APPLICATION 0
+# define POINTS 1
+# define CAMERA 2
+# define KEY_DISPATCH_TABLE 3
+# define KEYS_PRESSED 4
 
 # ifndef EXIT
 #  define EXIT(error_msg) ft_puterror(error_msg)
@@ -138,5 +144,13 @@ t_keys		*get_key_table(void);
 int			toggle_flags_off(int key_pressed, void **params);
 int			toggle_flags_on(int key_pressed, void **params);
 int			render(void **params);
+
+/*
+** -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-  -_---_-_-
+** FILE: exit_application.c
+** Handles the clean up step when exiting the program.
+*/
+
+void		do_exit_sequence(void **params);
 
 #endif

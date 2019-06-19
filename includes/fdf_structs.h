@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 16:22:00 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/17 22:23:18 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/18 02:38:56 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@ typedef struct		s_app
 	void			*window;
 }					t_app;
 
+# define ZA 3
+
 typedef struct		s_camera
 {
 	int				rotation_angle_x;
 	int				rotation_angle_y;
-	float			scaling[3];
+	float			scaling[4];
 	int				pos[3];
 	int				target[3];
 }					t_camera;

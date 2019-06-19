@@ -6,15 +6,47 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/08 03:03:50 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/18 00:46:36 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/18 19:57:11 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-#define APPLICATION 0
-#define POINTS 1
-#define CAMERA 2
+int		toggle_flags_on(int key_pressed, void **params)
+{
+	size_t		i;
+	t_keys		*key_dispatch_table;
+	t_key_value *keys;
+
+	i = 0;
+	keys = (t_key_value *)(params[4]);
+	key_dispatch_table = (t_keys *)(params[3]);
+	while (key_dispatch_table[i].key != 0)
+	{
+		if (key_pressed == key_dispatch_table[i].key)
+			*keys = (*keys) | key_dispatch_table[i].flag;
+		i++;
+	}
+	return (1);
+}
+
+int		toggle_flags_off(int key_pressed, void **params)
+{
+	size_t		i;
+	t_keys		*key_dispatch_table;
+	t_key_value *keys;
+
+	i = 0;
+	keys = (t_key_value *)(params[4]);
+	key_dispatch_table = (t_keys *)(params[3]);
+	while (key_dispatch_table[i].flag != UNDEFINED_KEY)
+	{
+		if (key_pressed == key_dispatch_table[i].key)
+			*keys = (*keys) ^ key_dispatch_table[i].flag;
+		i++;
+	}
+	return (1);
+}
 
 t_app	create_application(void)
 {

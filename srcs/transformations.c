@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/10 17:00:55 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/18 01:42:36 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/18 02:56:22 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void	scale_point(t_point *point, t_camera camera)
 {
 	point->screen_pos[X] = (int)(point->PX * camera.scaling[X]);
 	point->screen_pos[Y] = (int)(point->PY * camera.scaling[Y]);
-	point->screen_pos[Z] = (int)(point->PZ * camera.scaling[Z]);
+	point->screen_pos[Z] =
+		(int)(point->PZ * camera.scaling[Z] * camera.scaling[ZA]);
 }

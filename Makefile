@@ -6,13 +6,13 @@
 #    By: kmira <kmira@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/06/04 18:19:15 by kmira             #+#    #+#              #
-#    Updated: 2019/06/18 01:13:17 by kmira            ###   ########.fr        #
+#    Updated: 2019/06/18 19:48:40 by kmira            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-FLAGS = -Wall -Wextra -Werror -O3 -march=native
+FLAGS = -Wall -Wextra -Werror
 
 INCLUDES = includes
 LIBRARY = libft/libft.a
@@ -21,6 +21,7 @@ LIBMLX = minilibx_macos/libmlx.a
 FILES = \
 		application \
 		camera \
+		exit_application \
 		input_application \
 		input_program \
 		input_program_utils \

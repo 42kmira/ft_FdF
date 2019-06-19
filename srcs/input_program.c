@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/07 17:55:53 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/18 02:19:51 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/18 20:20:12 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_point	parse_point(char const *line, int x, int y, int *index)
 		EXIT(RED"Invalid file format");
 	result.RGB = 0xFFFFFF;
 	if (result.PZ != 0)
-		result.RGB = 0xFF0000;
+		result.RGB = 0x00FF00;
 	if (line[*index] == ',')
 	{
 		result.color = fetch_hexadecimal(&line[*index]);
@@ -88,7 +88,6 @@ t_point	*get_point_row(char const *line, int row, int number_x_points)
 		SKIP_SPACE(line, i);
 		x++;
 	}
-	printf("Cols %d and %d\n", x, number_x_points);
 	point_row[x].exist = 0;
 	if (x == number_x_points)
 		return (point_row);

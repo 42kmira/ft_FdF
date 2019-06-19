@@ -6,7 +6,7 @@
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/16 20:34:04 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/18 01:42:30 by kmira            ###   ########.fr       */
+/*   Updated: 2019/06/18 18:57:34 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,16 @@ t_keys	*get_key_table(void)
 	key_dispatch[1] = (t_keys){124, KEY_DOWN};
 	key_dispatch[2] = (t_keys){125, KEY_LEFT};
 	key_dispatch[3] = (t_keys){126, KEY_RIGHT};
-
 	key_dispatch[4] = (t_keys){91, KEY_ROTATE_UP};
 	key_dispatch[5] = (t_keys){84, KEY_ROTATE_DOWN};
 	key_dispatch[6] = (t_keys){86, KEY_ROTATE_LEFT};
 	key_dispatch[7] = (t_keys){88, KEY_ROTATE_RIGHT};
-
 	key_dispatch[8] = (t_keys){47, KEY_INCREASE_ALT};
 	key_dispatch[9] = (t_keys){43, KEY_DECREASE_ALT};
 	key_dispatch[10] = (t_keys){6, KEY_ZOOM_IN};
 	key_dispatch[11] = (t_keys){7, KEY_ZOOM_OUT};
-
 	key_dispatch[12] = (t_keys){53, KEY_ESC};
-
 	return (key_dispatch);
-}
-
-#define APPLICATION 0
-#define POINTS 1
-#define CAMERA 2
-#define KEY_DISPATCH_TABLE 3
-#define KEYS_PRESSED 4
-
-void	do_exit_sequence(void **params)
-{
-	(void)params;
-	system("leaks fdf");
-	EXIT(GREEN"Program exited correctly");
 }
 
 void	set_translate(t_key_value *keys_pressed, t_camera *camera)
@@ -77,26 +60,20 @@ void	set_rotate(t_key_value *keys_pressed, t_camera *camera)
 void	set_scale(t_key_value *keys_pressed, t_camera *camera)
 {
 	if (*keys_pressed & KEY_INCREASE_ALT)
-		camera->scaling[Z] = camera->scaling[Z] + DELTA_SCALE;
+		camera->scaling[ZA] = camera->scaling[ZA] + DELTA_SCALE;
 	if (*keys_pressed & KEY_DECREASE_ALT)
-		camera->scaling[Z] = camera->scaling[Z] - DELTA_SCALE;
+		camera->scaling[ZA] = camera->scaling[ZA] - DELTA_SCALE;
 	if (*keys_pressed & KEY_ZOOM_IN)
 	{
 		camera->scaling[X] = camera->scaling[X] + DELTA_SCALE;
 		camera->scaling[Y] = camera->scaling[Y] + DELTA_SCALE;
-		if (camera->scaling[Z] > DELTA_SCALE)
-			camera->scaling[Z] = camera->scaling[Z] + DELTA_SCALE;
-		else if (camera->scaling[Z] < -DELTA_SCALE)
-			camera->scaling[Z] = camera->scaling[Z] - DELTA_SCALE;
+		camera->scaling[Z] = camera->scaling[Z] + DELTA_SCALE;
 	}
 	if (*keys_pressed & KEY_ZOOM_OUT)
 	{
 		camera->scaling[X] = camera->scaling[X] - DELTA_SCALE;
 		camera->scaling[Y] = camera->scaling[Y] - DELTA_SCALE;
-		if (camera->scaling[Z] < -DELTA_SCALE)
-			camera->scaling[Z] = camera->scaling[Z] - DELTA_SCALE;
-		else if (camera->scaling[Z] > DELTA_SCALE)
-			camera->scaling[Z] = camera->scaling[Z] + DELTA_SCALE;
+		camera->scaling[Z] = camera->scaling[Z] - DELTA_SCALE;
 	}
 }
 
@@ -116,41 +93,5 @@ int		render(void **params)
 	application = params[APPLICATION];
 	mlx_clear_window(application->mlx_connection, application->window);
 	draw_lines(params[APPLICATION], params[POINTS], params[CAMERA]);
-	return (1);
-}
-
-int		toggle_flags_on(int key_pressed, void **params)
-{
-	size_t		i;
-	t_keys		*key_dispatch_table;
-	t_key_value *keys;
-
-	i = 0;
-	keys = (t_key_value *)(params[4]);
-	key_dispatch_table = (t_keys *)(params[3]);
-	while (key_dispatch_table[i].key != 0)
-	{
-		if (key_pressed == key_dispatch_table[i].key)
-			*keys = (*keys) | key_dispatch_table[i].flag;
-		i++;
-	}
-	return (1);
-}
-
-int		toggle_flags_off(int key_pressed, void **params)
-{
-	size_t		i;
-	t_keys		*key_dispatch_table;
-	t_key_value *keys;
-
-	i = 0;
-	keys = (t_key_value *)(params[4]);
-	key_dispatch_table = (t_keys *)(params[3]);
-	while (key_dispatch_table[i].flag != UNDEFINED_KEY)
-	{
-		if (key_pressed == key_dispatch_table[i].key)
-			*keys = (*keys) ^ key_dispatch_table[i].flag;
-		i++;
-	}
 	return (1);
 }

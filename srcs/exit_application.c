@@ -1,35 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minimain.c                                         :+:      :+:    :+:   */
+/*   exit_application.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmira <kmira@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/06/10 19:31:18 by kmira             #+#    #+#             */
-/*   Updated: 2019/06/18 19:17:51 by kmira            ###   ########.fr       */
+/*   Created: 2019/06/18 02:59:26 by kmira             #+#    #+#             */
+/*   Updated: 2019/06/18 20:23:21 by kmira            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
+#include "fdf.h"
 
-int main(int argc, char const *argv[])
+void	do_exit_sequence(void **params)
 {
-	// int i = 0;
-	// float x_angle;
+	int		i;
+	t_point	**points;
+	t_app	*app;
 
-	// while (i < 360)
-	// {
-	// 	x_angle = (i * M_PI * 2) / 360;
-	// 	printf("SIN: %f\n", sin(x_angle));
-	// 	i++;
-	// }
-
-	printf("%ld\n", 4294967296);
-	printf("%ju\n", 4294967296);
-	char *line = malloc(sizeof(*line) * 10);
-	line[9] = '\0';
-	// free(line);
-	return 0;
+	i = 0;
+	points = params[POINTS];
+	app = params[APPLICATION];
+	while (points[i] != NULL)
+	{
+		free(points[i]);
+		i++;
+	}
+	free(points);
+	free(params[KEY_DISPATCH_TABLE]);
+	mlx_destroy_window(app->mlx_connection, app->window);
+	system("leaks fdf");
+	EXIT(GREEN"Program exited correctly");
 }

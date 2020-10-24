@@ -5,8 +5,8 @@ are in the [maps folder](https://github.com/42kmira/ft_FdF/tree/master/maps), an
 It uses a basic graphics library, one that interacts with the kernel to announce key events, make a window, and draw raw pixels on said window,
 called minilibx.
 
-This project was entirely done in C. Rotations, translation and zoom were implemented from scratch. How keys down and up presses are handled
-was up to the user. The controls are:
+This project was entirely done in C. Rotations, translation and zoom were implemented from scratch. How keys presses are handled
+was up to the programmer. These keys are non blocking i.e. multiple keys can be pressed at the same time. The controls are:
 
 Rotation:
 

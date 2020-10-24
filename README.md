@@ -1,5 +1,9 @@
 # ft_FdF
 
+<br>
+<img align="left" height="250" src="https://github.com/42kmira/ft_FdF/blob/master/resources/Untitled.png" />
+<br>
+
 This is the first of the graphics projects in the graphics branch. This project involves reading a map, some example maps
 are in the [maps folder](https://github.com/42kmira/ft_FdF/tree/master/maps), and converting that map into a 3D wireframe.
 It uses a basic graphics library, one that interacts with the kernel to announce key events, make a window, and draw raw pixels on said window,

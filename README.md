@@ -10,30 +10,40 @@ was up to the user. The controls are:
 
 Rotation:
 
-```Numpad 8
+```
+Numpad 8
 Numpad 2
 Numpad 4
-Numpad 6```
+Numpad 6
+```
 
 Translation:
-```Arrow Left
+```
+Arrow Left
 Arrow Right
 Arrow Up
-Arrow Down```
+Arrow Down
+```
 
 Zoom:
-```Z
-X```
+```
+Z
+X
+```
 
 Change Map Height:
-```<
->```
+```
+<
+>
+```
 
 <br>
-<img align="left" height="450" src="https://github.com/42kmira/ft_FdF/blob/master/resources/elem_col.gif" />
+<img align="top" height="450" src="https://github.com/42kmira/ft_FdF/blob/master/resources/elem_col.gif" />
 <br>
 
+Also supports RGB maps!
+
 <br>
-<img align="left" height="450" src="https://github.com/42kmira/ft_FdF/blob/master/resources/t1.gif" />
+<img align="bottom" height="450" src="https://github.com/42kmira/ft_FdF/blob/master/resources/t1.gif" />
 <br>
 

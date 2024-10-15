@@ -9,6 +9,8 @@ are in the [maps folder](https://github.com/42kmira/ft_FdF/tree/master/maps), an
 It uses a basic graphics library, one that interacts with the kernel to announce key events, make a window, and draw raw pixels on said window,
 called minilibx.
 
+The library does not have powerful drawing functions, the purpose was for the programmer to write their own [draw line functions](https://github.com/42kmira/ft_FdF/blob/9992fffc91638176aeee362450b50f96bef038b2/srcs/rendering.c#L64), [matrix/projection functions](https://github.com/42kmira/ft_FdF/blob/master/srcs/transformations.c), and other key functions. 
+
 This project was entirely done in C. Rotations, translation and zoom were implemented from scratch. How keys presses are handled
 was up to the programmer. These keys are non blocking i.e. multiple keys can be pressed at the same time. The controls are:
 
